@@ -1,8 +1,11 @@
 package me.ksviety.plugins.mc.locations;
 
+import me.ksviety.plugins.mc.locations.commands.FastTravel;
 import me.ksviety.plugins.mc.locations.commands.Locations;
 import me.ksviety.plugins.mc.locations.data.LocationsData;
 import me.ksviety.plugins.mc.locations.data.PlayersData;
+import me.ksviety.plugins.mc.locations.listeners.PlayerJoinEventListener;
+import me.ksviety.plugins.mc.locations.listeners.PlayerMotionEventListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Plugin extends JavaPlugin {
@@ -22,7 +25,13 @@ public class Plugin extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        this.getCommand("locations").setExecutor(new Locations());
+        //  Commands
+        this.getCommand("adminlocations").setExecutor(new Locations());
+        this.getCommand("fasttravel").setExecutor(new FastTravel());
+
+        //  Event listeners
+        getServer().getPluginManager().registerEvents(new PlayerMotionEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinEventListener(), this);
 
     }
 

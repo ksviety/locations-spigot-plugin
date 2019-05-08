@@ -3,10 +3,10 @@
   version: 1.0
   author: ksviety
   commands:
-    locations:
+    adminlocations:
       permission: ksviety.locations.admin
       usage: /locations <sub-command> [param1, param2, ...]
     fasttravel:
       permission: ksviety.locations.fasttravel
-      usage: /fasttravel|ft <location-name>
+      usage: /fasttravel <location-name>
       aliases: ft

@@ -5,8 +5,6 @@ import java.util.UUID;
 public class Player {
 
     private final UUID uuid;
-
-    //  Names of opened locations
     private String[] locations;
 
     public UUID getUUID() {
@@ -22,7 +20,11 @@ public class Player {
     }
 
     public Player(UUID uuid) {
+
         this.uuid = uuid;
+
+        locations = new String[0];
+
     }
 
 }

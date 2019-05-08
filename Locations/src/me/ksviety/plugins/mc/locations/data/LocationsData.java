@@ -1,6 +1,7 @@
 package me.ksviety.plugins.mc.locations.data;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import me.ksviety.plugins.mc.locations.misc.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 
@@ -96,11 +97,12 @@ public class LocationsData implements IDataSave {
     @Override
     public boolean save() {
         String data;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try {
 
             //  Serializing the data into JSON
-            data = new Gson().toJson(locations);
+            data = gson.toJson(locations);
 
             //  Saving the data
             FileManagement.writeFile(FileManagement.PATHS.LOCATIONS_DATA, data);

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Locations:jar">
+    <output-path>$USER_HOME$/Desktop/server/quest/plugins</output-path>
+    <root id="archive" name="Locations.jar">
+      <element id="module-output" name="Locations" />
+      <element id="file-copy" path="$USER_HOME$/Documents/gson-2.6.2.jar" />
+    </root>
+  </artifact>
+</component>

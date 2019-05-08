@@ -1,9 +1,9 @@
-package me.ksviety.plugins.mc.locations.commands.locations;
+package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
-import me.ksviety.plugins.mc.locations.commands.ISubCommand;
+import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
 import org.bukkit.command.CommandSender;
 
-public class Set implements ISubCommand {
+public class Set extends SubCommand {
 
     @Override
     public String getCommand() {
@@ -12,7 +12,7 @@ public class Set implements ISubCommand {
 
     @Override
     public String getHelp() {
-        return "/locations set <location-name> <pos|label|warp-position> [param1, param2, ...]";
+        return "/adminlocations set <location-name> <pos|label|warp-position> [param1, param2, ...]";
     }
 
     @Override

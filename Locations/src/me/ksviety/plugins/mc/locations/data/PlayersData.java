@@ -1,6 +1,7 @@
 package me.ksviety.plugins.mc.locations.data;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.misc.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
@@ -24,6 +25,33 @@ public class PlayersData implements IDataSave {
         }
 
         return null;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public boolean addPlayer(Player newPlayer) {
+        Player[] newArray = new Player[players.length + 1];
+
+        //  Checking if the new player hasn't been saved yet
+        for (Player player: players) {
+
+            if (player.getUUID().equals(newPlayer.getUUID()))
+                return false;
+
+        }
+
+        //  Filling out the new array
+        for (int i = 0; i < players.length; i++)
+            newArray[i] = players[i];
+
+        //  Adding the new player into the end of newArray
+        newArray[players.length] = newPlayer;
+
+        players = newArray;
+
+        return true;
     }
 
     public boolean addLocation(Player player, Location location) {
@@ -83,11 +111,12 @@ public class PlayersData implements IDataSave {
     @Override
     public boolean save() {
         String data;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try {
 
             //  Serializing data
-            data = new Gson().toJson(players);
+            data = gson.toJson(players);
 
             //  Saving data
             FileManagement.writeFile(FileManagement.PATHS.PLAYERS_DATA, data);

@@ -1,9 +1,11 @@
 package me.ksviety.plugins.mc.locations.commands;
 
-import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.locations.Create;
-import me.ksviety.plugins.mc.locations.commands.locations.Remove;
-import me.ksviety.plugins.mc.locations.misc.FileManagement;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Create;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Remove;
+import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
+import me.ksviety.plugins.mc.locations.commands.misc.SubCommandsExecutor;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Save;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Set;
 import org.bukkit.block.CommandBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -38,7 +40,7 @@ public class Locations implements CommandExecutor {
 
             if (!(sender instanceof CommandBlock)) {
 
-                for (ISubCommand currentCommand: subCommandsExecutor.getRegisteredSubCommands())
+                for (SubCommand currentCommand: subCommandsExecutor.getRegisteredSubCommands())
                     sender.sendMessage(currentCommand.getCommand());
 
             }
@@ -52,6 +54,8 @@ public class Locations implements CommandExecutor {
 
         subCommandsExecutor.registerSubCommand(new Create());
         subCommandsExecutor.registerSubCommand(new Remove());
+        subCommandsExecutor.registerSubCommand(new Save());
+        subCommandsExecutor.registerSubCommand(new Set());
 
     }
 
