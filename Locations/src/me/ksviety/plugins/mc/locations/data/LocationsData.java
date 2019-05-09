@@ -27,6 +27,11 @@ public class LocationsData implements IDataSave {
         return null;
     }
 
+    //  Get whole locations list
+    public Location[] getLocations() {
+        return locations.clone();
+    }
+
     //  Add a new location
     public boolean addLocation(Location newLocation) {
         Location[] newArray = new Location[locations.length + 1];

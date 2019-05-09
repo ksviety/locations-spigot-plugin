@@ -28,7 +28,7 @@ public class PlayersData implements IDataSave {
     }
 
     public Player[] getPlayers() {
-        return players;
+        return players.clone();
     }
 
     public boolean addPlayer(Player newPlayer) {

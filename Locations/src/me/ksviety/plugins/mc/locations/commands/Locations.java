@@ -10,8 +10,12 @@ import org.bukkit.block.CommandBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
-public class Locations implements CommandExecutor {
+import java.util.Arrays;
+import java.util.List;
+
+public class Locations implements CommandExecutor, TabCompleter {
 
     final SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
 
@@ -50,6 +54,8 @@ public class Locations implements CommandExecutor {
         return true;
     }
 
+
+
     public Locations() {
 
         subCommandsExecutor.registerSubCommand(new Create());
@@ -57,6 +63,11 @@ public class Locations implements CommandExecutor {
         subCommandsExecutor.registerSubCommand(new Save());
         subCommandsExecutor.registerSubCommand(new Set());
 
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        return subCommandsExecutor.getTabCompletion(sender, args);
     }
 
 }
