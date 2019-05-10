@@ -19,40 +19,6 @@ public class SubCommandsExecutor {
         return subCommands;
     }
 
-    //  Get the lost of currently available sub-commands
-    public List<String> getTabCompletion(CommandSender sender, String[] args) {
-        List<String> commands = new ArrayList<>();
-
-        //  Check if no sub-commands has been typed yet
-        //  And return the list of registered sub-commands
-        //  Avoiding nullPointerException in advance
-        if (args.length == 0) {
-
-            for (SubCommand subCommand: subCommands)
-                commands.add(subCommand.getCommand());
-
-            return commands;
-        }
-
-        //  Getting current sub-command
-        for (SubCommand subCommand: subCommands) {
-
-            if (subCommand.getCommand().equalsIgnoreCase(args[0])) {
-                String[] subCommandArgs = new String[args.length-1];
-
-                //  Getting only the sub-command args
-                //  Without its name
-                for (int i = 1; i < args.length; i++)
-                    subCommandArgs[i-1] = args[i];
-
-                return subCommand.getTabCompletion(sender, subCommandArgs);
-            }
-
-        }
-
-        return commands;
-    }
-
     //  Executing a command by its name
     //  Return true if the command has ran
     public boolean executeSubCommand(String command, CommandSender sender, String[] args) {
