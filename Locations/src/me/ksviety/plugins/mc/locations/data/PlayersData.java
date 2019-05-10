@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class PlayersData implements IDataSave {
 
-    ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<Player> players = new ArrayList<>();
 
     public Player getPlayer(UUID uuid) {
 
@@ -55,7 +55,7 @@ public class PlayersData implements IDataSave {
             data = FileManagement.readFile(FileManagement.PATHS.PLAYERS_DATA);
 
             //  Parsing the data and initializing the data array with them
-            players = (ArrayList<Player>)Arrays.asList(new Gson().fromJson(data, Player[].class));
+            players = new ArrayList<>(Arrays.asList(new Gson().fromJson(data, Player[].class)));
 
         } catch (IOException e) {
 

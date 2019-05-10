@@ -70,7 +70,7 @@ public class LocationsData implements IDataSave {
             data = FileManagement.readFile(FileManagement.PATHS.LOCATIONS_DATA);
 
             //  Parsing the data and initializing the data array with them
-            locations = (ArrayList<Location>) Arrays.asList(new Gson().fromJson(data, Location[].class));
+            locations = new ArrayList<>(Arrays.asList(new Gson().fromJson(data, Location[].class)));
 
         } catch (IOException e) {
 
