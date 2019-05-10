@@ -5,7 +5,8 @@
   commands:
     adminlocations:
       permission: ksviety.locations.admin
-      usage: /locations <sub-command> [param1, param2, ...]
+      usage: /adminlocations <sub-command> [param1, param2, ...]
+      aliases: alocations
     fasttravel:
       permission: ksviety.locations.fasttravel
       usage: /fasttravel <location-name>

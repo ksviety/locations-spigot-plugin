@@ -1,7 +1,7 @@
 package me.ksviety.plugins.mc.locations;
 
+import me.ksviety.plugins.mc.locations.commands.AdminLocations;
 import me.ksviety.plugins.mc.locations.commands.FastTravel;
-import me.ksviety.plugins.mc.locations.commands.Locations;
 import me.ksviety.plugins.mc.locations.data.LocationsData;
 import me.ksviety.plugins.mc.locations.data.PlayersData;
 import me.ksviety.plugins.mc.locations.listeners.PlayerJoinEventListener;
@@ -26,7 +26,7 @@ public class Plugin extends JavaPlugin {
     public void onEnable() {
 
         //  Commands
-        this.getCommand("adminlocations").setExecutor(new Locations());
+        this.getCommand("adminlocations").setExecutor(new AdminLocations());
         this.getCommand("fasttravel").setExecutor(new FastTravel());
 
         //  Event listeners

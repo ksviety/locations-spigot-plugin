@@ -11,7 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class Locations implements CommandExecutor {
+public class AdminLocations implements CommandExecutor {
 
     final SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
 
@@ -52,7 +52,7 @@ public class Locations implements CommandExecutor {
 
 
 
-    public Locations() {
+    public AdminLocations() {
 
         subCommandsExecutor.registerSubCommand(new Create());
         subCommandsExecutor.registerSubCommand(new Remove());

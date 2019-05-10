@@ -7,6 +7,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.List;
+
 public class PlayerJoinEventListener implements Listener {
 
     //  Listening to the event for joining players
@@ -15,7 +17,7 @@ public class PlayerJoinEventListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoined(PlayerJoinEvent e) {
-        Player[] savedPlayers = Plugin.playersData.getPlayers();
+        List<Player> savedPlayers = Plugin.playersData.getPlayers();
         Player newPlayer;
 
         //  Checking if the player is saved

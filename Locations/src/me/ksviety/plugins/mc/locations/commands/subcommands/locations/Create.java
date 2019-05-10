@@ -2,7 +2,7 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
-import me.ksviety.plugins.mc.locations.misc.Vector2;
+import me.ksviety.plugins.mc.locations.misc.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 import org.bukkit.command.CommandSender;
 
@@ -30,7 +30,7 @@ public class Create extends SubCommand {
         }
 
         //  Creating the new location
-        Location newLocation = new Location(args[0].toLowerCase(), args[0].toLowerCase(), Vector2.zero, Vector2.zero, Vector2.zero);
+        Location newLocation = new Location(args[0].toLowerCase(), args[0].toLowerCase(), Vector2xz.zero, Vector2xz.zero, Vector2xz.zero);
 
         //  Adding the location into the DataSave
         if (!Plugin.locationsData.addLocation(newLocation)) {

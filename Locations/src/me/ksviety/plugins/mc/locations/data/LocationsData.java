@@ -8,18 +8,19 @@ import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LocationsData implements IDataSave {
 
-    private Location[] locations = new Location[0];
+    private List<Location> locations = new ArrayList<>();
 
     //  Get a location by the name
     public Location getLocation(String name) {
 
         for (Location location: locations) {
 
-            if (location.getName().equals(name))
+            if (location.getName().equalsIgnoreCase(name))
                 return location;
 
         }
@@ -28,50 +29,37 @@ public class LocationsData implements IDataSave {
     }
 
     //  Get whole locations list
-    public Location[] getLocations() {
-        return locations.clone();
+    public List<Location> getLocations() {
+        return locations;
     }
 
     //  Add a new location
     public boolean addLocation(Location newLocation) {
-        Location[] newArray = new Location[locations.length + 1];
 
-        for (int i = 0; i < locations.length; i++) {
+        //  Checking if the location does not exist yet
+        for (Location location: locations) {
 
-            //  Checking if the location already exists
-            if (locations[i].getName().equals(newLocation.getName()))
+            if (location.equals(newLocation))
                 return false;
 
-            //  Copying data from the old array to the new one
-            newArray[i] = locations[i];
         }
 
-        //  Adding newLocation to the end of the new array
-        newArray[locations.length] = newLocation;
-
-        //  Reinitializing the data array
-        locations = newArray;
+        locations.add(newLocation);
 
         return true;
     }
 
     //  Remove a location
     public boolean removeLocation(String name) {
-        List<Location> newArray = new ArrayList();
-        boolean success = false;
 
-        for (int i = 0; i < locations.length; i++) {
+        for (Location location: locations) {
 
-            if (locations[i].getName().equals(name))
-                success = true;
-            else
-                newArray.add(locations[i]);
+            if (location.equals(name))
+                return locations.remove(location);
 
         }
 
-        locations = newArray.toArray(new Location[locations.length-1]);
-
-        return success;
+        return false;
     }
 
     @Override
@@ -84,7 +72,7 @@ public class LocationsData implements IDataSave {
             data = FileManagement.readFile(FileManagement.PATHS.LOCATIONS_DATA);
 
             //  Parsing the data and initializing the data array with them
-            locations = new Gson().fromJson(data, Location[].class);
+            locations = Arrays.asList(new Gson().fromJson(data, Location[].class));
 
         } catch (IOException e) {
 
@@ -107,7 +95,7 @@ public class LocationsData implements IDataSave {
         try {
 
             //  Serializing the data into JSON
-            data = gson.toJson(locations);
+            data = gson.toJson(locations.toArray());
 
             //  Saving the data
             FileManagement.writeFile(FileManagement.PATHS.LOCATIONS_DATA, data);

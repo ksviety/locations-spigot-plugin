@@ -16,7 +16,7 @@ public class Set extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "/adminlocations set <pos|label|warp-position> <location-name> [param1, param2, ...]";
+        return "/adminlocations set <position|label|warp> <location-name> [param1, param2, ...]";
     }
 
     @Override
@@ -35,7 +35,6 @@ public class Set extends SubCommand {
         //  Initializing the sub-command name
         subCommand = args[0];
 
-        //  Executing the sub-command
         subCommandsExecutor.executeSubCommand(subCommand, sender, subCommandArgs);
 
         return true;

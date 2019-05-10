@@ -21,6 +21,7 @@ public class SubCommandsExecutor {
 
     //  Executing a command by its name
     //  Return true if the command has ran
+    //  Success of the sub commands should not affect
     public boolean executeSubCommand(String command, CommandSender sender, String[] args) {
 
         for (SubCommand subCommand: subCommands) {
