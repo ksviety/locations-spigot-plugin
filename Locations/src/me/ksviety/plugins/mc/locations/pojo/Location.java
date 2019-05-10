@@ -1,7 +1,7 @@
-package me.ksviety.plugins.mc.locations.pojo.saves;
+package me.ksviety.plugins.mc.locations.pojo;
 
-import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.util.Vector2xz;
+import me.ksviety.plugins.mc.locations.util.Vector3;
 
 public class Location {
 
@@ -9,7 +9,7 @@ public class Location {
     private String label;
     private Vector2xz firstPosition;
     private Vector2xz secondPosition;
-    private Vector2xz warpPosition;
+    private Vector3 warpPosition;
 
     //  **  GETTERS **  //
 
@@ -60,9 +60,9 @@ public class Location {
     }
 
     //  TODO add validation if the new warp position is located inside the cube of firstPosition and secondPosition
-    public boolean setWarpPosition(Vector2xz position) {
+    public boolean setWarpPosition(Vector3 position) {
 
-        warpPosition = new Vector2xz(position);
+        warpPosition = new Vector3(position);
 
         return true;
     }
@@ -96,7 +96,7 @@ public class Location {
         return false;
     }
 
-    public Location(String name, String label, Vector2xz pos1, Vector2xz pos2, Vector2xz warpPosition) {
+    public Location(String name, String label, Vector2xz pos1, Vector2xz pos2, Vector3 warpPosition) {
 
         this.name = name.toLowerCase();
         this.label = label;

@@ -3,7 +3,7 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.util.Vector2xz;
-import me.ksviety.plugins.mc.locations.pojo.saves.Location;
+import me.ksviety.plugins.mc.locations.pojo.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -105,6 +105,8 @@ public class Position extends SubCommand {
             //  Setting second position
             location.setFirstPosition(position);
 
+            successMessage = "The first position has been successfully set to " + args[0]  + ".";
+
             return true;
         }
 
@@ -113,6 +115,9 @@ public class Position extends SubCommand {
 
             //  Setting second position
             location.setSecondPosition(position);
+
+
+            successMessage = "The second position has been successfully set to " + args[0]  + ".";
 
             return true;
         }

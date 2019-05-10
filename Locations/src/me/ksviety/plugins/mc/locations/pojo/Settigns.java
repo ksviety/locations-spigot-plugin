@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.pojo.saves;
+package me.ksviety.plugins.mc.locations.pojo;
 
 import com.google.gson.annotations.JsonAdapter;
 

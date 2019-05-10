@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.pojo.saves;
+package me.ksviety.plugins.mc.locations.pojo;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 

@@ -1,7 +1,7 @@
 package me.ksviety.plugins.mc.locations.listeners;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.pojo.saves.Player;
+import me.ksviety.plugins.mc.locations.pojo.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

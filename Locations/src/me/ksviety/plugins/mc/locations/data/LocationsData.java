@@ -3,7 +3,7 @@ package me.ksviety.plugins.mc.locations.data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
-import me.ksviety.plugins.mc.locations.pojo.saves.Location;
+import me.ksviety.plugins.mc.locations.pojo.Location;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
