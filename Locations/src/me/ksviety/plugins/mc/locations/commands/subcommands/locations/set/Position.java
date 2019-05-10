@@ -26,7 +26,7 @@ public class Position extends SubCommand {
     //  Second argument: Position [first|second]
     @Override
     public boolean run(CommandSender sender, String[] args) {
-        Location location = null;
+        Location location;
         Vector2xz position = Vector2xz.zero;
         Player player;
 
@@ -67,8 +67,8 @@ public class Position extends SubCommand {
         //  DOING THE STUFF
         player = (Player) sender;
 
-        position.x = (int)Math.floor(player.getLocation().getX());
-        position.z = (int)Math.floor(player.getLocation().getZ());
+        position.setX((int)Math.floor(player.getLocation().getX()));
+        position.setZ((int)Math.floor(player.getLocation().getZ()));
 
         sender.sendMessage(position.toString());
 
