@@ -42,4 +42,9 @@ public class Vector2xz {
         this.z = z;
     }
 
+    public Vector2xz(Vector2xz vector) {
+        x = vector.getX();
+        z = vector.getZ();
+    }
+
 }

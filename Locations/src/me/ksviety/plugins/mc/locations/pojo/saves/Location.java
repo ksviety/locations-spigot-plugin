@@ -1,5 +1,6 @@
 package me.ksviety.plugins.mc.locations.pojo.saves;
 
+import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.util.Vector2xz;
 
 public class Location {
@@ -51,17 +52,17 @@ public class Location {
     }
 
     public void setFirstPosition(Vector2xz position) {
-        firstPosition = position;
+        firstPosition = new Vector2xz(position);
     }
 
     public void setSecondPosition(Vector2xz position) {
-        secondPosition = position;
+        secondPosition = new Vector2xz(position);
     }
 
     //  TODO add validation if the new warp position is located inside the cube of firstPosition and secondPosition
     public boolean setWarpPosition(Vector2xz position) {
 
-        warpPosition = position;
+        warpPosition = new Vector2xz(position);
 
         return true;
     }
