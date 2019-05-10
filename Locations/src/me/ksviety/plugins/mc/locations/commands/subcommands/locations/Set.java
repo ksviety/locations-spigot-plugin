@@ -1,5 +1,6 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Label;
 import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Warp;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
@@ -45,6 +46,7 @@ public class Set extends SubCommand {
 
         subCommandsExecutor.registerSubCommand(new Position());
         subCommandsExecutor.registerSubCommand(new Warp());
+        subCommandsExecutor.registerSubCommand(new Label());
 
     }
 

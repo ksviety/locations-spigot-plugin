@@ -111,8 +111,7 @@ public class Warp extends SubCommand {
         //  Setting the warp
         location.setWarpPosition(position);
 
-        //  TODO remove DEBUG
-        sender.sendMessage(location.toString());
+        successMessage = "Warp has been successfully set to " + args[0] + ".";
 
         return true;
     }
