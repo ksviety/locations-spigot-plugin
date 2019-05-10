@@ -2,8 +2,8 @@ package me.ksviety.plugins.mc.locations.commands;
 
 import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Create;
 import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Remove;
-import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
-import me.ksviety.plugins.mc.locations.commands.misc.SubCommandsExecutor;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Save;
 import me.ksviety.plugins.mc.locations.commands.subcommands.locations.Set;
 import org.bukkit.block.CommandBlock;

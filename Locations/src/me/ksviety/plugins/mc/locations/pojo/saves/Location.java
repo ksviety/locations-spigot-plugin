@@ -1,6 +1,6 @@
 package me.ksviety.plugins.mc.locations.pojo.saves;
 
-import me.ksviety.plugins.mc.locations.misc.Vector2xz;
+import me.ksviety.plugins.mc.locations.util.Vector2xz;
 
 public class Location {
 

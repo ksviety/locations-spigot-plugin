@@ -1,8 +1,8 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
-import me.ksviety.plugins.mc.locations.misc.Vector2xz;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 import org.bukkit.command.CommandSender;
 

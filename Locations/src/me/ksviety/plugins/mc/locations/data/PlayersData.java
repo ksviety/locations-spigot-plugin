@@ -2,7 +2,7 @@ package me.ksviety.plugins.mc.locations.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import me.ksviety.plugins.mc.locations.misc.FileManagement;
+import me.ksviety.plugins.mc.locations.util.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.saves.Player;
 
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class PlayersData implements IDataSave {
 
-    List<Player> players = new ArrayList<>();
+    ArrayList<Player> players = new ArrayList<>();
 
     public Player getPlayer(UUID uuid) {
 
@@ -55,7 +55,7 @@ public class PlayersData implements IDataSave {
             data = FileManagement.readFile(FileManagement.PATHS.PLAYERS_DATA);
 
             //  Parsing the data and initializing the data array with them
-            players = Arrays.asList(new Gson().fromJson(data, Player[].class));
+            players = (ArrayList<Player>)Arrays.asList(new Gson().fromJson(data, Player[].class));
 
         } catch (IOException e) {
 

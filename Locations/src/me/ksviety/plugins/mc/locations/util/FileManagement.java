@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.misc;
+package me.ksviety.plugins.mc.locations.util;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 

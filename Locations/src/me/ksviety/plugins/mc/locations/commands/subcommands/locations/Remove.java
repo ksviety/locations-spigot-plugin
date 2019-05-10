@@ -1,7 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import org.bukkit.command.CommandSender;
 
 public class Remove extends SubCommand {

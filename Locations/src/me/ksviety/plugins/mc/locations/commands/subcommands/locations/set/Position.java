@@ -1,8 +1,8 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
-import me.ksviety.plugins.mc.locations.misc.Vector2xz;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -26,7 +26,9 @@ public class Position extends SubCommand {
     //  Second argument: Position [first|second]
     @Override
     public boolean run(CommandSender sender, String[] args) {
-        Location location;
+        Location location = null;
+        Vector2xz position = Vector2xz.zero;
+        Player player;
 
         //  ERROR CHECK
         //  Checking if the sender is a player
@@ -62,7 +64,16 @@ public class Position extends SubCommand {
             return false;
         }
 
-        sender.sendMessage(location.toString());
+        //  DOING THE STUFF
+        player = (Player) sender;
+
+        position.x = (int)Math.floor(player.getLocation().getX());
+        position.z = (int)Math.floor(player.getLocation().getZ());
+
+        sender.sendMessage(position.toString());
+
+        sender.sendMessage(location.getFirstPosition().toString());
+        sender.sendMessage(location.getSecondPosition().toString());
 
         return true;
     }

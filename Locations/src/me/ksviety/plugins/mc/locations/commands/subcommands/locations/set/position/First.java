@@ -1,7 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.position;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.misc.SubCommand;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 import org.bukkit.command.CommandSender;
 

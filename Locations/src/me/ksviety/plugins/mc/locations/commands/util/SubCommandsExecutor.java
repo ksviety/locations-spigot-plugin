@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.commands.misc;
+package me.ksviety.plugins.mc.locations.commands.util;
 
 import org.bukkit.command.CommandSender;
 

@@ -1,7 +1,7 @@
 package me.ksviety.plugins.mc.locations.listeners;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.misc.Vector2xz;
+import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

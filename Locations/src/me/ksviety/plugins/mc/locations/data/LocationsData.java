@@ -2,7 +2,7 @@ package me.ksviety.plugins.mc.locations.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import me.ksviety.plugins.mc.locations.misc.FileManagement;
+import me.ksviety.plugins.mc.locations.util.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.saves.Location;
 
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class LocationsData implements IDataSave {
 
-    private List<Location> locations = new ArrayList<>();
+    private ArrayList<Location> locations = new ArrayList<>();
 
     //  Get a location by the name
     public Location getLocation(String name) {
@@ -44,9 +44,7 @@ public class LocationsData implements IDataSave {
 
         }
 
-        locations.add(newLocation);
-
-        return true;
+        return locations.add(newLocation);
     }
 
     //  Remove a location
@@ -72,7 +70,7 @@ public class LocationsData implements IDataSave {
             data = FileManagement.readFile(FileManagement.PATHS.LOCATIONS_DATA);
 
             //  Parsing the data and initializing the data array with them
-            locations = Arrays.asList(new Gson().fromJson(data, Location[].class));
+            locations = (ArrayList<Location>) Arrays.asList(new Gson().fromJson(data, Location[].class));
 
         } catch (IOException e) {
 
