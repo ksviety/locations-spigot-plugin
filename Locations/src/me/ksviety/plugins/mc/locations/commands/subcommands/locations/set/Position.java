@@ -7,10 +7,17 @@ import me.ksviety.plugins.mc.locations.pojo.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class Position extends SubCommand {
 
     private static final String FIRST = "first";
     private static final String SECOND = "second";
+
+    @Override
+    public List<String> getTabCompletion(CommandSender sender, String[] args) {
+        return null;
+    }
 
     @Override
     public String getCommand() {

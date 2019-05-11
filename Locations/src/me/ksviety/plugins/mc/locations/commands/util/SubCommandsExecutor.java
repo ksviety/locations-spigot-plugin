@@ -44,12 +44,8 @@ public class SubCommandsExecutor {
                 } else {
                     //  Display success message
 
-                    //  Checking if the success message for the sub command set
-                    //  If it hasn't been set display default success message
                     if (subCommand.getSuccessMessage() != null)
                         sender.sendMessage(subCommand.getSuccessMessage());
-                    else
-                        sender.sendMessage(command + " has ran successfully.");
 
                 }
 

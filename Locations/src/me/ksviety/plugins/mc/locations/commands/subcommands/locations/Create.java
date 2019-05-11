@@ -7,7 +7,14 @@ import me.ksviety.plugins.mc.locations.pojo.Location;
 import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.command.CommandSender;
 
+import java.util.List;
+
 public class Create extends SubCommand {
+
+    @Override
+    public List<String> getTabCompletion(CommandSender sender, String[] args) {
+        return null;
+    }
 
     @Override
     public String getCommand() {

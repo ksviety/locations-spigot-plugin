@@ -7,9 +7,16 @@ import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Position;
 import org.bukkit.command.CommandSender;
 
+import java.util.List;
+
 public class Set extends SubCommand {
 
-    final SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
+    private final SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
+
+    @Override
+    public List<String> getTabCompletion(CommandSender sender, String[] args) {
+        return null;
+    }
 
     @Override
     public String getCommand() {

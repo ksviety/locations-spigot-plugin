@@ -6,8 +6,14 @@ import me.ksviety.plugins.mc.locations.pojo.Location;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Label extends SubCommand {
+
+    @Override
+    public List<String> getTabCompletion(CommandSender sender, String[] args) {
+        return null;
+    }
 
     @Override
     public String getCommand() {

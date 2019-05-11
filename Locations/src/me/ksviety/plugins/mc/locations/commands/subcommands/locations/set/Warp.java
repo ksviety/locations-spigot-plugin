@@ -7,7 +7,22 @@ import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Warp extends SubCommand {
+
+    @Override
+    public List<String> getTabCompletion(CommandSender sender, String[] args) {
+        List<String> locations = new ArrayList<>();
+
+        sender.sendMessage("HERE");
+
+        for (Location location: Plugin.locationsData.getLocations())
+            locations.add(location.getName());
+
+        return locations;
+    }
 
     @Override
     public String getCommand() {
