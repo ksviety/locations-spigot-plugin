@@ -10,10 +10,14 @@ import org.bukkit.block.CommandBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
-public class AdminLocations implements CommandExecutor {
+import java.util.Arrays;
+import java.util.List;
 
-    final SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
+public class AdminLocations implements CommandExecutor, TabCompleter {
+
+    private final SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -50,7 +54,15 @@ public class AdminLocations implements CommandExecutor {
         return true;
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        String[] subCommandArgs = (args.length == 0)? args: Arrays.copyOfRange(args, 1, args.length);
 
+        if (args.length > 0)
+            return subCommandsExecutor.getTabCompletion(sender, args[0], subCommandArgs);
+
+        return null;
+    }
 
     public AdminLocations() {
 
@@ -60,5 +72,4 @@ public class AdminLocations implements CommandExecutor {
         subCommandsExecutor.registerSubCommand(new Set());
 
     }
-
 }

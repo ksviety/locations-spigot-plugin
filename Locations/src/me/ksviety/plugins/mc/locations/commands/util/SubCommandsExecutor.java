@@ -3,6 +3,7 @@ package me.ksviety.plugins.mc.locations.commands.util;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SubCommandsExecutor {
@@ -12,6 +13,34 @@ public class SubCommandsExecutor {
     //  New command registration
     public boolean registerSubCommand(SubCommand subCommand) {
         return subCommands.add(subCommand);
+    }
+
+    //  Return the commands list if the 'command' is null
+    //  Else pass the 'args' to the command found by 'command'
+    //  'args' must not contain the sub command
+    public List<String> getTabCompletion(CommandSender sender, String command, String[] args) {
+        List<String> availableSuggestions = new ArrayList<>();
+
+        //  Return list of all registered sub-commands
+        //  TODO add sub-commands permissions validation
+        if (args.length == 0) {
+
+            for (SubCommand subCommand: subCommands)
+                availableSuggestions.add(subCommand.getCommand());
+
+            return availableSuggestions;
+        }
+
+        //  Return list of received from the sub-command suggestions
+        for (SubCommand subCommand: subCommands) {
+
+            if (subCommand.getCommand().equalsIgnoreCase(command))
+                return subCommand.getTabCompletion(sender, args);
+
+        }
+
+        //  Return just nothing if something went wrong
+        return null;
     }
 
     //  Get the list of the registered sub-commands
@@ -34,8 +63,8 @@ public class SubCommandsExecutor {
 
                     //  Checking if the error message for the sub command set
                     //  Else display the default error message
-                    if (subCommand.getErrorMessage() != null)
-                        sender.sendMessage(subCommand.getErrorMessage());
+                    if (subCommand.errorMessage != null)
+                        sender.sendMessage(subCommand.errorMessage);
                     else
                         sender.sendMessage(command + " has ran unsuccessfully.");
 
@@ -44,8 +73,8 @@ public class SubCommandsExecutor {
                 } else {
                     //  Display success message
 
-                    if (subCommand.getSuccessMessage() != null)
-                        sender.sendMessage(subCommand.getSuccessMessage());
+                    if (subCommand.successMessage != null)
+                        sender.sendMessage(subCommand.successMessage);
 
                 }
 

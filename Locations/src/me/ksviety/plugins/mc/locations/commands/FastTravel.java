@@ -113,11 +113,7 @@ public class FastTravel implements CommandExecutor, TabCompleter {
 
                     break;
                 case 2:
-                    //  Fill with all online players
-                    for (Player player: Bukkit.getServer().getOnlinePlayers())
-                        availableLocations.add(player.getName());
-
-                    break;
+                    return null;
             }
 
         } else if (sender instanceof Player)

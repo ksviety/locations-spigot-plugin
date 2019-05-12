@@ -2,16 +2,13 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.pojo.Location;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Remove extends SubCommand {
-
-    @Override
-    public List<String> getTabCompletion(CommandSender sender, String[] args) {
-        return null;
-    }
 
     @Override
     public String getCommand() {
@@ -44,6 +41,16 @@ public class Remove extends SubCommand {
         }
 
         return true;
+    }
+
+    @Override
+    public List<String> getTabCompletion(CommandSender sender, String[] args) {
+        List<String> availableLocations = new ArrayList<>();
+
+        for (Location location: Plugin.locationsData.getLocations())
+            availableLocations.add(location.getName());
+
+        return availableLocations;
     }
 
 }

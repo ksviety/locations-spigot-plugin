@@ -17,12 +17,4 @@ public abstract class SubCommand {
 
     public abstract boolean run(CommandSender sender, String[] args);
 
-    public String getSuccessMessage() {
-        return successMessage;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
 }

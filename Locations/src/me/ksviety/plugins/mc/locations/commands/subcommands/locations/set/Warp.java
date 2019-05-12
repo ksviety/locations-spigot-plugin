@@ -16,10 +16,12 @@ public class Warp extends SubCommand {
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
         List<String> locations = new ArrayList<>();
 
-        sender.sendMessage("HERE");
+        if (args.length == 0) {
 
-        for (Location location: Plugin.locationsData.getLocations())
-            locations.add(location.getName());
+            for (Location location: Plugin.locationsData.getLocations())
+                locations.add(location.getName());
+
+        }
 
         return locations;
     }
