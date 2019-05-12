@@ -2,6 +2,8 @@ package me.ksviety.plugins.mc.locations.pojo;
 
 import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.util.Vector3;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 
 public class Location {
 
@@ -10,6 +12,7 @@ public class Location {
     private Vector2xz firstPosition;
     private Vector2xz secondPosition;
     private Vector3 warpPosition;
+    private String world;
 
     //  **  GETTERS **  //
 
@@ -31,6 +34,20 @@ public class Location {
 
     public Vector2xz getWarpPosition() {
         return warpPosition;
+    }
+
+    public String getWorld() {
+        return world;
+    }
+
+    public org.bukkit.Location getWarpLocation() {
+        World world = Bukkit.getWorld(this.world);
+
+        return new org.bukkit.Location(
+                world,
+                (double)warpPosition.getX(),
+                (double)warpPosition.getY(),
+                (double)warpPosition.getZ());
     }
 
     //  **  SETTERS **  //
@@ -96,13 +113,14 @@ public class Location {
         return false;
     }
 
-    public Location(String name, String label, Vector2xz pos1, Vector2xz pos2, Vector3 warpPosition) {
+    public Location(String name, String label, Vector2xz pos1, Vector2xz pos2, Vector3 warpPosition, World world) {
 
         this.name = name.toLowerCase();
         this.label = label;
         this.firstPosition = pos1;
         this.secondPosition = pos2;
         this.warpPosition = warpPosition;
+        this.world = world.getName();
 
     }
 

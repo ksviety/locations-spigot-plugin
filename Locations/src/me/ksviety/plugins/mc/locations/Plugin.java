@@ -6,6 +6,7 @@ import me.ksviety.plugins.mc.locations.data.LocationsData;
 import me.ksviety.plugins.mc.locations.data.PlayersData;
 import me.ksviety.plugins.mc.locations.listeners.PlayerJoinEventListener;
 import me.ksviety.plugins.mc.locations.listeners.PlayerMotionEventListener;
+import me.ksviety.plugins.mc.locations.listeners.PlayerTraveledEventListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Plugin extends JavaPlugin {
@@ -32,6 +33,7 @@ public class Plugin extends JavaPlugin {
         //  Event listeners
         getServer().getPluginManager().registerEvents(new PlayerMotionEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerTraveledEventListener(), this);
 
     }
 

@@ -3,7 +3,7 @@ package me.ksviety.plugins.mc.locations.events;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PlayerEnteredLocation extends Event {
+public class PlayerEnteredLocationEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
