@@ -3,10 +3,13 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
+import me.ksviety.plugins.mc.locations.util.StringUtil;
 import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Position extends SubCommand {
@@ -16,7 +19,23 @@ public class Position extends SubCommand {
 
     @Override
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
-        return null;
+        List<String> suggestions = new ArrayList<>();
+
+        switch (args.length) {
+            case 1:
+
+                for (Location location : Plugin.locationsData.getLocations())
+                    suggestions.add(location.getName());
+
+            break;
+            case 2:
+
+                suggestions = Arrays.asList(FIRST, SECOND);
+
+                break;
+        }
+
+        return StringUtil.clarificateIgnoreCase(args[0], suggestions);
     }
 
     @Override

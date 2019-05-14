@@ -1,17 +1,17 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
-import me.ksviety.plugins.mc.locations.Plugin;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.save.All;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.save.Locations;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.save.Players;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Save extends SubCommand {
 
-    private static final String PLAYERS = "players";
-    private static final String LOCATIONS = "locations";
-    private static final String ALL = "all";
+    private SubCommandsExecutor subCommandsExecutor = new SubCommandsExecutor();
 
     @Override
     public String getCommand() {
@@ -34,24 +34,7 @@ public class Save extends SubCommand {
             return false;
         }
 
-        switch (args[0].toLowerCase()) {
-            case PLAYERS:
-                Plugin.playersData.save();
-                successMessage = "Players have been successfully saved.";
-                break;
-            case LOCATIONS:
-                Plugin.locationsData.save();
-                successMessage = "Locations have been successfully saved.";
-                break;
-            case ALL:
-                Plugin.playersData.save();
-                Plugin.locationsData.save();
-                successMessage = "Players and locations have been successfully saved.";
-                break;
-            default:
-                errorMessage = "Cannot save anything by the argument " + args[0] + ".";
-                return false;
-        }
+        subCommandsExecutor.executeSubCommand(args[0], sender, null);
 
         return true;
     }
@@ -59,7 +42,15 @@ public class Save extends SubCommand {
     @Override
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
 
-        return Arrays.asList(PLAYERS, LOCATIONS, ALL);
+        return subCommandsExecutor.getTabCompletion(sender, args[0], new String[0]);
+    }
+
+    public Save() {
+
+        subCommandsExecutor.registerSubCommand(new Players());
+        subCommandsExecutor.registerSubCommand(new Locations());
+        subCommandsExecutor.registerSubCommand(new All());
+
     }
 
 }

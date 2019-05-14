@@ -4,11 +4,11 @@ import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
 import me.ksviety.plugins.mc.locations.pojo.Player;
+import me.ksviety.plugins.mc.locations.util.StringUtil;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Label extends SubCommand {
@@ -81,7 +81,7 @@ public class Label extends SubCommand {
                 for (Location location: Plugin.locationsData.getLocations())
                     availableSuggestion.add(location.getName());
 
-                return availableSuggestion;
+                return StringUtil.clarificateIgnoreCase(args[0], availableSuggestion);
             //  Return the being edited location name
             case 2:
 

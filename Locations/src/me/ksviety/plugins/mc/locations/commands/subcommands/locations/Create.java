@@ -2,6 +2,7 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.util.LocationType;
 import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.Location;
 import me.ksviety.plugins.mc.locations.util.Vector3;
@@ -65,7 +66,9 @@ public class Create extends SubCommand {
                 Vector3.zero,
                 Vector3.zero,
                 Vector3.zero,
-                world);
+                world,
+                0,
+                LocationType.OTHER);
 
         //  Adding the location into the DataSave
         if (!Plugin.locationsData.addLocation(newLocation)) {

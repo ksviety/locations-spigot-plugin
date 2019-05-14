@@ -1,9 +1,10 @@
 package me.ksviety.plugins.mc.locations.pojo;
 
-import me.ksviety.plugins.mc.locations.util.Vector2xz;
+import me.ksviety.plugins.mc.locations.util.LocationType;
 import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.libs.jline.internal.Nullable;
 
 public class Location {
     private String name;
@@ -12,6 +13,8 @@ public class Location {
     private Vector3 secondPosition;
     private Vector3 warpPosition;
     private String world;
+    private int priority;
+    private LocationType type;
 
     public boolean hasIn(Vector3 object) {
         float minX = Float.min(firstPosition.getX(), secondPosition.getX());
@@ -71,6 +74,14 @@ public class Location {
                 (double)warpPosition.getZ());
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
+    public LocationType getType() {
+        return type;
+    }
+
     //  **  SETTERS **  //
 
     public boolean setName(String name) {
@@ -109,14 +120,31 @@ public class Location {
         return false;
     }
 
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public void setType(LocationType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        String finalString = "Name: %name \nPosition 1: %pos1 \nPosition 2: %pos2 \nWarp: %warp ";
+        String finalString = "Name: %name \n" +
+                "Position 1: %pos1 \n" +
+                "Position 2: %pos2 \n" +
+                "Warp: %warp\n" +
+                "Priority: %priority\n" +
+                "World: %world\n" +
+                "Type: %type";
 
         finalString = finalString.replaceAll("%name", name);
         finalString = finalString.replaceAll("%pos1", firstPosition.toString());
         finalString = finalString.replaceAll("%pos2", secondPosition.toString());
         finalString = finalString.replaceAll("%warp", warpPosition.toString());
+        finalString = finalString.replaceAll("%world", world);
+        finalString = finalString.replaceAll("%priority", String.valueOf(priority));
+        finalString = finalString.replaceAll("%type", type.name());
 
         return finalString;
     }
@@ -138,7 +166,8 @@ public class Location {
         return false;
     }
 
-    public Location(String name, String label, Vector3 pos1, Vector3 pos2, Vector3 warpPosition, World world) {
+    public Location(String name, String label, Vector3 pos1, Vector3 pos2, Vector3 warpPosition,
+                    World world, int priority, LocationType type) {
 
         this.name = name.toLowerCase();
         this.label = label;
@@ -146,6 +175,8 @@ public class Location {
         this.secondPosition = pos2;
         this.warpPosition = warpPosition;
         this.world = world.getName();
+        this.priority = priority;
+        this.type = type;
 
     }
 

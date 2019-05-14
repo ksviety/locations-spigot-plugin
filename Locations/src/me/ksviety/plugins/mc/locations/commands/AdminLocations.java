@@ -56,12 +56,9 @@ public class AdminLocations implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        String[] subCommandArgs = (args.length == 0)? args: Arrays.copyOfRange(args, 1, args.length);
+        String[] subCommandArgs = Arrays.copyOfRange(args, 1, args.length);
 
-        if (args.length > 0)
-            return subCommandsExecutor.getTabCompletion(sender, args[0], subCommandArgs);
-
-        return null;
+        return subCommandsExecutor.getTabCompletion(sender, args[0], subCommandArgs);
     }
 
     public AdminLocations() {

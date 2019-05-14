@@ -3,6 +3,7 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
+import me.ksviety.plugins.mc.locations.util.StringUtil;
 import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,14 +17,10 @@ public class Warp extends SubCommand {
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
         List<String> locations = new ArrayList<>();
 
-        if (args.length == 0) {
+        for (Location location: Plugin.locationsData.getLocations())
+            locations.add(location.getName());
 
-            for (Location location: Plugin.locationsData.getLocations())
-                locations.add(location.getName());
-
-        }
-
-        return locations;
+        return StringUtil.clarificateIgnoreCase(args[0], locations);
     }
 
     @Override
@@ -33,7 +30,7 @@ public class Warp extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "/adminlocations set warp <location-name> [X, Y, Z]";
+        return "/adminlocations set warp <location-name> [X Y Z]";
     }
 
     //  First argument: location name

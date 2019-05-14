@@ -4,6 +4,7 @@ import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.events.PlayerTraveledEvent;
 import me.ksviety.plugins.mc.locations.pojo.Location;
 import me.ksviety.plugins.mc.locations.util.ChatWriter;
+import me.ksviety.plugins.mc.locations.util.StringUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -131,6 +132,8 @@ public class FastTravel implements CommandExecutor, TabCompleter {
                     for (Location location : Plugin.locationsData.getLocations())
                         availableLocations.add(location.getName());
 
+                    //  Clarification
+                    availableLocations = StringUtil.clarificateIgnoreCase(args[0], availableLocations);
                     break;
                 case 2:
                     return null;

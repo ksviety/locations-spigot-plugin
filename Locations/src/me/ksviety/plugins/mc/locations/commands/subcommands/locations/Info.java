@@ -9,49 +9,57 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Remove extends SubCommand {
+public class Info extends SubCommand {
 
     @Override
     public String getCommand() {
-        return "remove";
+        return "info";
     }
 
     @Override
     public String getHelp() {
-        return "/adminlocations remove <name>";
+        return "/adminlocations info <location-name>";
     }
 
     @Override
     public boolean run(CommandSender sender, String[] args) {
+        Location location;
 
-        //  Checking if there is the name
-        if (args.length < 1) {
-
-            errorMessage = "Missing location name.";
-
-            return false;
-        }
-
-        if (Plugin.locationsData.removeLocation(args[0].toLowerCase()))
-            successMessage = "Location " + args[0].toLowerCase() + " has been successfully removed.";
+        //  ERROR CHECK
+        //  Arguments validation
+        if (args.length >= 1)
+            location = Plugin.locationsData.getLocation(args[0]);
         else {
 
-            errorMessage = "Cannot remove location " + args[0].toLowerCase() + ". Maybe the location doesn't exist.";
+            errorMessage = "Not enough arguments.";
 
             return false;
         }
+
+        //  ERROR CHECK
+        //  Checking if the location exists
+        if (location == null) {
+
+            errorMessage = "Cannot find location " + args[0] + ". Maybe it doesn't exist.";
+
+            return false;
+        }
+
+        //  DOING THE STUFF
+
+        sender.sendMessage(location.toString());
 
         return true;
     }
 
     @Override
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
-        List<String> availableLocations = new ArrayList<>();
+        List<String> locations = new ArrayList<>();
 
         for (Location location: Plugin.locationsData.getLocations())
-            availableLocations.add(location.getName());
+            locations.add(location.getName());
 
-        return args.length > 0? StringUtil.clarificateIgnoreCase(args[0], availableLocations): availableLocations;
+        return StringUtil.clarificateIgnoreCase(args[0], locations);
     }
 
 }
