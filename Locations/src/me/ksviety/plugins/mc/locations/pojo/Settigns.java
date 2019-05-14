@@ -1,7 +1,5 @@
 package me.ksviety.plugins.mc.locations.pojo;
 
-import com.google.gson.annotations.JsonAdapter;
-
 public class Settigns {
 
     //  Placeholders

@@ -62,8 +62,8 @@ public class Create extends SubCommand {
         Location newLocation = new Location(
                 args[0].toLowerCase(),
                 args[0].toLowerCase(),
-                Vector2xz.zero,
-                Vector2xz.zero,
+                Vector3.zero,
+                Vector3.zero,
                 Vector3.zero,
                 world);
 

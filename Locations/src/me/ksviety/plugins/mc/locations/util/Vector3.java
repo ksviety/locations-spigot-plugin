@@ -2,19 +2,19 @@ package me.ksviety.plugins.mc.locations.util;
 
 public class Vector3 extends Vector2xz {
 
-    private int y;
+    private float y;
 
     public static final Vector3 zero = new Vector3(0);
 
     //  **  GETTERS **
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
     //  **  SETTERS **
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 
@@ -26,14 +26,14 @@ public class Vector3 extends Vector2xz {
                 .replace("@y", String.valueOf(y));
     }
 
-    public Vector3(int xyz) {
+    public Vector3(float xyz) {
         super(xyz);
         y = xyz;
     }
 
-    public Vector3(int x, int y, int z) {
+    public Vector3(float x, float y, float z) {
         super(x, z);
-        y = y;
+        this.y = y;
     }
 
     public Vector3(Vector3 vector) {

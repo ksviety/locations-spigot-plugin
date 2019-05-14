@@ -2,28 +2,32 @@ package me.ksviety.plugins.mc.locations.util;
 
 public class Vector2xz {
 
-    private int x;
-    private int z;
+    private float x;
+    private float z;
 
     public static Vector2xz zero = new Vector2xz(0);
 
+    public static float getDistance(Vector2xz a, Vector2xz b) {
+        return (float)Math.sqrt( Math.pow( a.getX() - b.getX(), 2 ) + Math.pow( a.getZ() - b.getZ(), 2 ) );
+    }
+
     //  **  GETTERS **
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getZ() {
+    public float getZ() {
         return z;
     }
 
     //  **  SETTERS **
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public void setZ(int z) {
+    public void setZ(float z) {
         this.z = z;
     }
 
@@ -32,12 +36,12 @@ public class Vector2xz {
         return "x: @x z: @z".replace("@x", String.valueOf(x)).replace("@z", String.valueOf(z));
     }
 
-    public Vector2xz(int xz) {
+    public Vector2xz(float xz) {
         x = xz;
         z = xz;
     }
 
-    public Vector2xz(int x, int z) {
+    public Vector2xz(float x, float z) {
         this.x = x;
         this.z = z;
     }

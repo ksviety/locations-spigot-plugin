@@ -2,8 +2,8 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
-import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.Location;
+import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -26,7 +26,7 @@ public class Position extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "/adminlocations set position <location-name> <first|second> [X, Z]";
+        return "/adminlocations set position <location-name> <first|second> [X, Y, Z]";
     }
 
     //  First argument: Location name
@@ -36,7 +36,7 @@ public class Position extends SubCommand {
     @Override
     public boolean run(CommandSender sender, String[] args) {
         Location location;
-        Vector2xz position = Vector2xz.zero;
+        Vector3 position = Vector3.zero;
         Player player;
         boolean isByCoord = false;
 
@@ -52,10 +52,15 @@ public class Position extends SubCommand {
                     return false;
                 case 3:
                     //  The X coordinate has been given
+                    //  But no Y coordinate set
+                    errorMessage = "Y coordinate is not specified.";
+                    return false;
+                case 4:
+                    //  The Y coordinate has been given
                     //  But no Z coordinate set
                     errorMessage = "Z coordinate is not specified.";
                     return false;
-                case 4:
+                case 5:
                     //  Coordinates are specified
                     isByCoord = true;
                     break;
@@ -87,7 +92,8 @@ public class Position extends SubCommand {
             try {
 
                 position.setX(Integer.parseInt(args[2]));
-                position.setZ(Integer.parseInt(args[3]));
+                position.setY(Integer.parseInt(args[3]));
+                position.setZ(Integer.parseInt(args[4]));
 
             } catch (NumberFormatException e) {
 
@@ -100,8 +106,9 @@ public class Position extends SubCommand {
             player = (Player) sender;
 
             //  Setting the current position point
-            position.setX((int) Math.floor(player.getLocation().getX()));
-            position.setZ((int) Math.floor(player.getLocation().getZ()));
+            position.setX((int) player.getLocation().getX());
+            position.setY((int) player.getLocation().getY());
+            position.setZ((int) player.getLocation().getZ());
 
         }
 

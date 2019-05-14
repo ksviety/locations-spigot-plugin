@@ -6,13 +6,34 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 
 public class Location {
-
     private String name;
     private String label;
-    private Vector2xz firstPosition;
-    private Vector2xz secondPosition;
+    private Vector3 firstPosition;
+    private Vector3 secondPosition;
     private Vector3 warpPosition;
     private String world;
+
+    public boolean hasIn(Vector3 object) {
+        float minX = Float.min(firstPosition.getX(), secondPosition.getX());
+        float minY = Float.min(firstPosition.getY(), secondPosition.getY());
+        float minZ = Float.min(firstPosition.getZ(), secondPosition.getZ());
+
+        float maxX = Float.max(firstPosition.getX(), secondPosition.getX());
+        float maxY = Float.max(firstPosition.getY(), secondPosition.getY());
+        float maxZ = Float.max(firstPosition.getZ(), secondPosition.getZ());
+
+        //  minX <= objectX <= maxX
+        //  minZ <= objectZ <= maxZ
+        //  minY <= objectY <= maxY
+        if (minX <= object.getX() && maxX >= object.getX()) {
+
+            if (minZ <= object.getZ() && maxZ >= object.getZ())
+                return minY <= object.getY() && maxY >= object.getY();
+
+        }
+
+        return false;
+    }
 
     //  **  GETTERS **  //
 
@@ -24,15 +45,15 @@ public class Location {
         return label;
     }
 
-    public Vector2xz getFirstPosition() {
+    public Vector3 getFirstPosition() {
         return firstPosition;
     }
 
-    public Vector2xz getSecondPosition() {
+    public Vector3 getSecondPosition() {
         return secondPosition;
     }
 
-    public Vector2xz getWarpPosition() {
+    public Vector3 getWarpPosition() {
         return warpPosition;
     }
 
@@ -68,20 +89,24 @@ public class Location {
         this.label = label;
     }
 
-    public void setFirstPosition(Vector2xz position) {
-        firstPosition = new Vector2xz(position);
+    public void setFirstPosition(Vector3 position) {
+        firstPosition = new Vector3(position);
     }
 
-    public void setSecondPosition(Vector2xz position) {
-        secondPosition = new Vector2xz(position);
+    public void setSecondPosition(Vector3 position) {
+        secondPosition = new Vector3(position);
     }
 
-    //  TODO add validation if the new warp position is located inside the cube of firstPosition and secondPosition
     public boolean setWarpPosition(Vector3 position) {
 
-        warpPosition = new Vector3(position);
+        if (hasIn(position)) {
 
-        return true;
+            warpPosition = new Vector3(position);
+
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -113,7 +138,7 @@ public class Location {
         return false;
     }
 
-    public Location(String name, String label, Vector2xz pos1, Vector2xz pos2, Vector3 warpPosition, World world) {
+    public Location(String name, String label, Vector3 pos1, Vector3 pos2, Vector3 warpPosition, World world) {
 
         this.name = name.toLowerCase();
         this.label = label;

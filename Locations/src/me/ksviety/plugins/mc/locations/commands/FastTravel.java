@@ -18,14 +18,19 @@ public class FastTravel implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Location location;
+        //  Player to be traveled
         Player player;
         List<String> locations;
         boolean isByPlayer = false;
         PlayerTraveledEvent playerTraveledEvent;
 
         //  PERMISSION CHECK
-        if (!sender.hasPermission(command.getPermission()) && !sender.isOp())
-            return false;
+        if (!sender.hasPermission(command.getPermission()) && !sender.isOp()) {
+
+            ChatWriter.writeError(sender, "Permission fail.");
+
+            return true;
+        }
 
         //  ERROR CHECK
         //  Arguments validation
@@ -58,7 +63,7 @@ public class FastTravel implements CommandExecutor, TabCompleter {
 
                 ChatWriter.writeError(sender, "Permission fail.");
 
-                return false;
+                return true;
             }
 
             //  Check if the player is online
@@ -69,25 +74,40 @@ public class FastTravel implements CommandExecutor, TabCompleter {
                 return false;
             }
 
-            return player.teleport(location.getWarpLocation());
+        } else {
+            //  Moving the sender to the typed location
+            player = (Player) sender;
+
+            //  Checking if the player has opened the location already
+            if (!Plugin.playersData.getPlayer(player.getUniqueId()).getLocations().contains(location.getName())) {
+
+                if (!player.isOp()) {
+
+                    ChatWriter.writeError(sender, "The location has not been opened yet.");
+
+                    return true;
+                }
+
+            }
+
         }
 
-        //  Moving the sender to the typed location
-        player = (Player)sender;
+        //  Creating and calling the event
+        //  Then checking if no listeners have cancelled it
+        //  And moving the player if so
+        playerTraveledEvent = new PlayerTraveledEvent(player, location);
 
-        //  Check if the player is OP
-        if (player.isOp())
-            return player.teleport(location.getWarpLocation());
+        Bukkit.getPluginManager().callEvent(playerTraveledEvent);
 
-        //  Checking if the player has unlocked the location already
-        for (String cLocation: Plugin.playersData.getPlayer(player.getUniqueId()).getLocations()) {
+        if (playerTraveledEvent.isCancelled()) {
 
-            if (location.equals(cLocation))
-                return player.teleport(location.getWarpLocation());
+            ChatWriter.writeError(sender, "The action has been cancelled.");
 
-        }
+            return true;
+        } else
+            player.teleport(location.getWarpLocation());
 
-        return false;
+        return true;
     }
 
     @Override
