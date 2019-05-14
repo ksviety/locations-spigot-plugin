@@ -1,5 +1,6 @@
 package me.ksviety.plugins.mc.locations.commands.util;
 
+import me.ksviety.plugins.mc.locations.util.StringUtil;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class SubCommandsExecutor {
             for (SubCommand subCommand: subCommands)
                 availableSuggestions.add(subCommand.getCommand());
 
-            return availableSuggestions;
+            return StringUtil.clarificateIgnoreCase(command, availableSuggestions);
         }
 
         //  Return list of received from the sub-command suggestions
