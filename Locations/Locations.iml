@@ -13,21 +13,23 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/server/quest/server.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/gson-2.6.2.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/Desktop/server/quest/server.jar!/" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/gson-2.6.2.jar!/" />
+          <root url="file://$USER_HOME$/Documents/spigot" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Documents/spigot" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Documents/spigot" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Documents/spigot" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>

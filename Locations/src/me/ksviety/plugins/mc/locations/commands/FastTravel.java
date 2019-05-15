@@ -53,6 +53,15 @@ public class FastTravel implements CommandExecutor, TabCompleter {
             return false;
         }
 
+        //  ERROR CHECK
+        //  Checking if the location is inactive
+        if (!location.isActive()) {
+
+            ChatWriter.writeError(sender, "Location " + location.getName() + " is inactive.");
+
+            return false;
+        }
+
         //  DOING THE STUFF
         //  Moving player to the location by their nickname
         //  If the the mode has been set to do like that
@@ -129,8 +138,12 @@ public class FastTravel implements CommandExecutor, TabCompleter {
             switch (args.length) {
                 case 1:
                     //  Fill with all locations
-                    for (Location location : Plugin.locationsData.getLocations())
-                        availableLocations.add(location.getName());
+                    for (Location location : Plugin.locationsData.getLocations()) {
+
+                        if (location.isActive())
+                            availableLocations.add(location.getName());
+
+                    }
 
                     //  Clarification
                     availableLocations = StringUtil.clarificateIgnoreCase(args[0], availableLocations);

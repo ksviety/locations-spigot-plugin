@@ -1,8 +1,10 @@
 package me.ksviety.plugins.mc.locations.util;
 
+import com.google.gson.annotations.Expose;
+
 public class Vector3 extends Vector2xz {
 
-    private float y;
+    @Expose private float y;
 
     public static final Vector3 zero = new Vector3(0);
 

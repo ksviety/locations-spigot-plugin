@@ -1,20 +1,29 @@
 package me.ksviety.plugins.mc.locations.pojo;
 
+import com.google.gson.annotations.Expose;
 import me.ksviety.plugins.mc.locations.util.LocationType;
 import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.libs.jline.internal.Nullable;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Location {
-    private String name;
-    private String label;
-    private Vector3 firstPosition;
-    private Vector3 secondPosition;
-    private Vector3 warpPosition;
-    private String world;
-    private int priority;
-    private LocationType type;
+    @Expose private String name;
+    @Expose private String label;
+    @Expose private Vector3 firstPosition;
+    @Expose private Vector3 secondPosition;
+    @Expose private Vector3 warpPosition;
+    @Expose private String world;
+    @Expose private int priority;
+    @Expose private LocationType type;
+    @Expose private boolean active;
+
+    @Expose(deserialize = false, serialize = false)
+    private List<UUID> players;
 
     public boolean hasIn(Vector3 object) {
         float minX = Float.min(firstPosition.getX(), secondPosition.getX());
@@ -39,6 +48,14 @@ public class Location {
     }
 
     //  **  GETTERS **  //
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public List<UUID> getPlayers() {
+        return players;
+    }
 
     public String getName() {
         return name;
@@ -120,6 +137,10 @@ public class Location {
         return false;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public void setPriority(int priority) {
         this.priority = priority;
     }
@@ -128,15 +149,34 @@ public class Location {
         this.type = type;
     }
 
+    public void addPlayer(UUID player) {
+        this.players.add(player);
+    }
+
+    public void removePlayer(UUID player) {
+        this.players.remove(player);
+    }
+
     @Override
     public String toString() {
+        List<String> players = new ArrayList<>();
         String finalString = "Name: %name \n" +
+                "Label: %label\n" +
                 "Position 1: %pos1 \n" +
                 "Position 2: %pos2 \n" +
                 "Warp: %warp\n" +
                 "Priority: %priority\n" +
                 "World: %world\n" +
-                "Type: %type";
+                "Type: %type\n" +
+                "Activity: %activity\n" +
+                "Current players: [%players]";
+
+        for (Player player: Bukkit.getOnlinePlayers()) {
+
+            if (this.players.contains(player.getUniqueId()))
+                players.add(player.getName());
+
+        }
 
         finalString = finalString.replaceAll("%name", name);
         finalString = finalString.replaceAll("%pos1", firstPosition.toString());
@@ -145,12 +185,18 @@ public class Location {
         finalString = finalString.replaceAll("%world", world);
         finalString = finalString.replaceAll("%priority", String.valueOf(priority));
         finalString = finalString.replaceAll("%type", type.name());
+        finalString = finalString.replaceAll("%label", label);
+        finalString = finalString.replaceAll("%players", String.join(", ", players));
+        finalString = finalString.replaceAll("%activity", active? "Active": "Inactive");
 
         return finalString;
     }
 
     @Override
     public boolean equals(Object obj) {
+
+        if (obj instanceof String)
+            return ((String) obj).equalsIgnoreCase(name);
 
         if ((obj instanceof Location) && ((Location) obj).getName().equalsIgnoreCase(getName()))
             return true;
@@ -177,7 +223,14 @@ public class Location {
         this.world = world.getName();
         this.priority = priority;
         this.type = type;
+        this.active = false;
 
+        this.players = new ArrayList<>();
+
+    }
+
+    public Location() {
+        this.players = new ArrayList<>();
     }
 
 }

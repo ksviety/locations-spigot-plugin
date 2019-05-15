@@ -20,6 +20,7 @@ public class Position extends SubCommand {
     @Override
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
         List<String> suggestions = new ArrayList<>();
+        String key = args[0];
 
         switch (args.length) {
             case 1:
@@ -27,15 +28,17 @@ public class Position extends SubCommand {
                 for (Location location : Plugin.locationsData.getLocations())
                     suggestions.add(location.getName());
 
-            break;
+                break;
             case 2:
 
                 suggestions = Arrays.asList(FIRST, SECOND);
 
+                key = args[1];
+
                 break;
         }
 
-        return StringUtil.clarificateIgnoreCase(args[0], suggestions);
+        return StringUtil.clarificateIgnoreCase(key, suggestions);
     }
 
     @Override

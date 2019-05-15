@@ -1,6 +1,7 @@
 package me.ksviety.plugins.mc.locations.pojo;
 
 import me.ksviety.plugins.mc.locations.Plugin;
+import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,11 @@ public class Player {
             return false;
 
         return locations.add(name);
+    }
+
+    @Override
+    public String toString() {
+        return Bukkit.getPlayer(this.uuid).getName();
     }
 
     @Override

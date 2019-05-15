@@ -1,11 +1,8 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Label;
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Priority;
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Warp;
+import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.*;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.Position;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;
@@ -62,6 +59,8 @@ public class Set extends SubCommand {
         subCommandsExecutor.registerSubCommand(new Warp());
         subCommandsExecutor.registerSubCommand(new Label());
         subCommandsExecutor.registerSubCommand(new Priority());
+        subCommandsExecutor.registerSubCommand(new Type());
+        subCommandsExecutor.registerSubCommand(new Activity());
 
     }
 

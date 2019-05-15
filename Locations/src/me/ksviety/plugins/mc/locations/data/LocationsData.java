@@ -88,7 +88,7 @@ public class LocationsData implements IDataSave {
     @Override
     public boolean save() {
         String data;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
         try {
 

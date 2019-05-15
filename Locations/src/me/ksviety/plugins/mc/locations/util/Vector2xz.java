@@ -1,9 +1,11 @@
 package me.ksviety.plugins.mc.locations.util;
 
+import com.google.gson.annotations.Expose;
+
 public class Vector2xz {
 
-    private float x;
-    private float z;
+    @Expose private float x;
+    @Expose private float z;
 
     public static Vector2xz zero = new Vector2xz(0);
 
