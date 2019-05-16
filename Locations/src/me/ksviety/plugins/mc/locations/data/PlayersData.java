@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-public class PlayersData implements IDataSave {
+public class PlayersData implements ILoadable, ISavable {
 
     private ArrayList<Player> players = new ArrayList<>();
 

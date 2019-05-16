@@ -1,8 +1,5 @@
 package me.ksviety.plugins.mc.locations.data;
 
-public interface IDataSave {
-
+public interface ILoadable {
     boolean load();
-    boolean save();
-
 }

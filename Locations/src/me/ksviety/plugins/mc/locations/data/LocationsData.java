@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LocationsData implements IDataSave {
+public class LocationsData implements ILoadable, ISavable {
 
     private ArrayList<Location> locations = new ArrayList<>();
 
