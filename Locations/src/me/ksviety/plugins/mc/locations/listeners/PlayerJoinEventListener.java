@@ -20,6 +20,8 @@ public class PlayerJoinEventListener implements Listener {
         List<Player> savedPlayers = Plugin.playersData.getPlayers();
         Player newPlayer;
 
+        e.getPlayer().sendMessage(e.getPlayer().getLocale());
+
         //  Checking if the player is saved
         for (Player player: savedPlayers) {
 

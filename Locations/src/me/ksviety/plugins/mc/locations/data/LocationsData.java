@@ -67,7 +67,7 @@ public class LocationsData implements ILoadable, ISavable {
         try {
 
             //  Loading JSON from the save file
-            data = FileManagement.readFile(FileManagement.PATHS.LOCATIONS_DATA);
+            data = FileManagement.readFile(FileManagement.LOCATIONS_SAVE_FILE);
 
             //  Parsing the data and initializing the data array with them
             locations = new ArrayList<>(Arrays.asList(new Gson().fromJson(data, Location[].class)));
@@ -96,7 +96,7 @@ public class LocationsData implements ILoadable, ISavable {
             data = gson.toJson(locations.toArray());
 
             //  Saving the data
-            FileManagement.writeFile(FileManagement.PATHS.LOCATIONS_DATA, data);
+            FileManagement.writeFile(FileManagement.LOCATIONS_SAVE_FILE, data);
 
         } catch (IOException e) {
             e.printStackTrace();

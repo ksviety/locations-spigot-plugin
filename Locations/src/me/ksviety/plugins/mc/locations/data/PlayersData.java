@@ -52,7 +52,7 @@ public class PlayersData implements ILoadable, ISavable {
         try {
 
             //  Loading JSON from the save file
-            data = FileManagement.readFile(FileManagement.PATHS.PLAYERS_DATA);
+            data = FileManagement.readFile(FileManagement.PLAYERS_SAVE_FILE);
 
             //  Parsing the data and initializing the data array with them
             players = new ArrayList<>(Arrays.asList(new Gson().fromJson(data, Player[].class)));
@@ -81,7 +81,7 @@ public class PlayersData implements ILoadable, ISavable {
             data = gson.toJson(players);
 
             //  Saving data
-            FileManagement.writeFile(FileManagement.PATHS.PLAYERS_DATA, data);
+            FileManagement.writeFile(FileManagement.PLAYERS_SAVE_FILE, data);
 
         } catch (IOException e) {
             e.printStackTrace();

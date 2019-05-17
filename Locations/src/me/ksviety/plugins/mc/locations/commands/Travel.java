@@ -12,9 +12,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FastTravel implements CommandExecutor, TabCompleter {
-
-    private final static String PERMISSION_NICKNAME = "ksviety.locations.use.fasttravel.nickname";
+public class Travel implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -69,7 +67,7 @@ public class FastTravel implements CommandExecutor, TabCompleter {
             player = Bukkit.getPlayer(args[1]);
 
             //  Check if the sender has permission to do that
-            if (!sender.hasPermission(PERMISSION_NICKNAME) && !sender.isOp()) {
+            if (!sender.hasPermission("") && !sender.isOp()) {
 
                 ChatWriter.writeError(sender, "Permission fail.");
 
@@ -130,7 +128,7 @@ public class FastTravel implements CommandExecutor, TabCompleter {
 
         //  Show all locations if the sender is console or OP
         //  Else only show unlocked by the player locations
-        if (sender instanceof ConsoleCommandSender || sender.isOp() || sender.hasPermission(PERMISSION_NICKNAME)) {
+        if (sender instanceof ConsoleCommandSender || sender.isOp() || sender.hasPermission("")) {
 
             //  Choose what list of completions to show
             //  First argument: Location name

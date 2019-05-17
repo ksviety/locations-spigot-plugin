@@ -6,47 +6,62 @@ import java.io.*;
 
 public class FileManagement {
 
-    public final static class PATHS {
+    private static final String SAVES_DIR_NAME = "saves";
+    private static final String SETTINGS_FILE_NAME = "settings.json";
+    private static final String LOCATIONS_SAVE_FILE_NAME = "locations.json";
+    private static final String PLAYERS_SAVE_FILE_NAME = "players.json";
 
-        public final static String PLUGIN_DIR = Plugin.getPlugin(Plugin.class).getDataFolder().toString();
+    public static final File PLUGIN_DIR = Plugin.getPlugin(Plugin.class).getDataFolder();
+    public static final File SAVES_DIR = new File(PLUGIN_DIR, SAVES_DIR_NAME);
 
-        public final static String LOCATIONS_DATA = "locations_save.json";
-        public final static String PLAYERS_DATA = "players_save.json";
-        public final static String SETTING_DATA = "settings_save.json";
+    public static final File SETTINGS_FILE = new File(PLUGIN_DIR, SETTINGS_FILE_NAME);
+    public static final File PLAYERS_SAVE_FILE = new File(SAVES_DIR, PLAYERS_SAVE_FILE_NAME);
+    public static final File LOCATIONS_SAVE_FILE = new File(SAVES_DIR, LOCATIONS_SAVE_FILE_NAME);
+
+    public static class Resources {
+
+        public static final String ENGLISH_LOCALE_FILE = "english.loc";
+        public static final String RUSSIAN_LOCALE_FILE = "russian.loc";
+        public static final String DEFAULT_SETTIGNS_FILE = "settings.json";
 
     }
 
-    public static String readFile(String path) throws IOException {
-        String finalOut;
-        File file = new File(PATHS.PLUGIN_DIR, path);
-        FileInputStream inputStream = new FileInputStream(file);
-        byte[] content = new byte[inputStream.available()];
+    public static String readFile(File file) throws IOException {
+        String currentLine;
+        StringBuilder finalString = new StringBuilder();
+        FileReader reader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(reader);
 
-        //  Reading the file and putting the data into content
-        inputStream.read(content);
+        while ( (currentLine = bufferedReader.readLine()) != null )
+            finalString.append(currentLine);
 
-        //  Initializing finalOut with the file data
-        finalOut = new String(content);
+        bufferedReader.close();
 
-        inputStream.close();
-
-        return finalOut;
+        return finalString.toString();
     }
 
-    public static void writeFile(String path, String content) throws IOException {
-        File pluginDir = new File(PATHS.PLUGIN_DIR);
-        File file = new File(PATHS.PLUGIN_DIR, path);
+    public static void writeFile(File file, String content) throws IOException {
+        FileWriter writer = new FileWriter(file);
 
-        //  Checking if the plugin folder exists and making it if it doesn't
-        if (!pluginDir.exists())
-            pluginDir.mkdirs();
+        writer.write(content);
+        writer.flush();
 
-        FileOutputStream outputStream = new FileOutputStream(file);
+        writer.close();
+    }
 
-        //  Writing into the file
-        outputStream.write(content.getBytes());
+    public static String readResourceFile(String resource) throws IOException {
+        String currentLine;
+        StringBuilder finalString = new StringBuilder();
+        InputStream inputStream = Plugin.class.getResourceAsStream(resource);
+        InputStreamReader reader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(reader);
 
-        outputStream.close();
+        while ( (currentLine = bufferedReader.readLine()) != null )
+            finalString.append(currentLine);
+
+        bufferedReader.close();
+
+        return finalString.toString();
     }
 
 }
