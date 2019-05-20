@@ -48,6 +48,7 @@ public class Locale implements ILoadable {
         public static final String CHANGED_LOCATION_TYPE = "changed-location-type";
         public static final String NO_COORDINATES = "no-coordinates";
         public static final String WARP_SET = "warp-set";
+        public static final String LOCATION_OPENED = "location-opened";
     }
 
     public String getText(Player player, String key) {

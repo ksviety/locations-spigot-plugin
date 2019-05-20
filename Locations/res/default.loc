@@ -31,3 +31,4 @@ priority-applied=The priority has been successfully applied to the location.
 changed-location-type=Successfully changed the location type.
 no-coordinates=No coordinates have been give.
 warp-set=New warp has been successfully set to the location.
+location-opened=Location opened.
