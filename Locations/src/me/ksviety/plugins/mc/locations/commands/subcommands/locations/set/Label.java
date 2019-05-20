@@ -1,9 +1,10 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
-import me.ksviety.plugins.mc.locations.pojo.Player;
 import me.ksviety.plugins.mc.locations.util.StringUtil;
 import org.bukkit.command.CommandSender;
 
@@ -36,11 +37,11 @@ public class Label extends SubCommand {
         switch (args.length) {
             case 0:
                 //  No location been given
-                errorMessage = "Location has not been specified.";
+                errorMessage = Plugin.locale.getText(sender, Keys.NO_LOCATION);
                 return false;
             case 1:
                 //  No label been given
-                errorMessage = "Label cannot be empty.";
+                errorMessage = Plugin.locale.getText(sender, Keys.LABEL_EMPTY);
                 return false;
             default:
                 //  Everything is fine
@@ -57,7 +58,7 @@ public class Label extends SubCommand {
         //  If the location exists
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0].toLowerCase() + ". Maybe it doesn't exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }
@@ -66,7 +67,7 @@ public class Label extends SubCommand {
 
         location.setLabel(label);
 
-        successMessage = "Label \"" + label + "\" has been successfully applied to location " + args[0].toLowerCase() + ".";
+        successMessage = Plugin.locale.getText(sender, Keys.LABEL_APPLIED);
 
         return true;
     }

@@ -8,6 +8,13 @@
       usage: /adminlocations <sub-command> [param1, param2, ...]
       aliases: alocations
     fasttravel:
-      permission: ksviety.locations.fasttravel
+      permission: ksviety.locations.travel
       usage: /fasttravel <location-name>
       aliases: ft
+  permissions:
+    ksviety.locations.travel.others:
+      default: op
+    ksviety.locations.list:
+      default: op
+      description: Unlocks all locations
+

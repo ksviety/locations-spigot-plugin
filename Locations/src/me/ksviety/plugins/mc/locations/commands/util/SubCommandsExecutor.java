@@ -1,10 +1,13 @@
 package me.ksviety.plugins.mc.locations.commands.util;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
+import me.ksviety.plugins.mc.locations.Plugin;
+import me.ksviety.plugins.mc.locations.util.ChatWriter;
 import me.ksviety.plugins.mc.locations.util.StringUtil;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SubCommandsExecutor {
@@ -65,17 +68,17 @@ public class SubCommandsExecutor {
                     //  Checking if the error message for the sub command set
                     //  Else display the default error message
                     if (subCommand.errorMessage != null)
-                        sender.sendMessage(subCommand.errorMessage);
+                        ChatWriter.writeError(sender, subCommand.errorMessage);
                     else
-                        sender.sendMessage(command + " has ran unsuccessfully.");
+                        ChatWriter.writeError(sender, Plugin.locale.getText(sender, Keys.COMMAND_RAN_UNSUCCESSFULLY));
 
-                    sender.sendMessage(subCommand.getHelp());
+                    ChatWriter.writeHelp(sender, subCommand.getHelp());
 
                 } else {
                     //  Display success message
 
                     if (subCommand.successMessage != null)
-                        sender.sendMessage(subCommand.successMessage);
+                        ChatWriter.writeSuccess(sender, subCommand.successMessage);
 
                 }
 

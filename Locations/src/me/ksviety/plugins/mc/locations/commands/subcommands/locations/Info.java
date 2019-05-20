@@ -1,5 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -31,7 +33,7 @@ public class Info extends SubCommand {
             location = Plugin.locationsData.getLocation(args[0]);
         else {
 
-            errorMessage = "Not enough arguments.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
             return false;
         }
@@ -40,7 +42,7 @@ public class Info extends SubCommand {
         //  Checking if the location exists
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0] + ". Maybe it doesn't exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }

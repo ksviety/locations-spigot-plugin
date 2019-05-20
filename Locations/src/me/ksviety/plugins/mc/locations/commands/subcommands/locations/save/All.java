@@ -2,6 +2,7 @@ package me.ksviety.plugins.mc.locations.commands.subcommands.locations.save;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.data.Locale;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public class All extends SubCommand {
 
         Plugin.locationsData.save();
         Plugin.playersData.save();
+
+        successMessage = Plugin.locale.getText(sender, Locale.Keys.SAVED);
 
         return true;
     }

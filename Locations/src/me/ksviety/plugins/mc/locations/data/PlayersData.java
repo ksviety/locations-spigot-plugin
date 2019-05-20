@@ -84,7 +84,6 @@ public class PlayersData implements ILoadable, ISavable {
             FileManagement.writeFile(FileManagement.PLAYERS_SAVE_FILE, data);
 
         } catch (IOException e) {
-            e.printStackTrace();
 
             return false;
         }

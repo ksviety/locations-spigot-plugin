@@ -1,5 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -36,7 +38,7 @@ public class Priority extends SubCommand {
 
         } else {
 
-            errorMessage = "Not enough arguments.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
             return false;
         }
@@ -45,7 +47,7 @@ public class Priority extends SubCommand {
         //  Location not found
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0] + ". Maybe it doesn't exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }
@@ -57,12 +59,12 @@ public class Priority extends SubCommand {
 
             location.setPriority(priority);
 
-            successMessage = "Priority " + priority + " has been successfully applied to location " + args[0] + ".";
+            successMessage = Plugin.locale.getText(sender, Keys.PRIORITY_APPLIED);
 
             return true;
         } catch (NumberFormatException e) {
 
-            errorMessage = "Priority must be a number.";
+            errorMessage = Plugin.locale.getText(sender, Keys.PRIORITY_NOT_INT);
 
             return false;
         }

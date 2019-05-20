@@ -1,5 +1,8 @@
 package me.ksviety.plugins.mc.locations.commands;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys.*;
+import static me.ksviety.plugins.mc.locations.commands.util.Permissions.*;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.events.PlayerTraveledEvent;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -26,7 +29,7 @@ public class Travel implements CommandExecutor, TabCompleter {
         //  PERMISSION CHECK
         if (!sender.hasPermission(command.getPermission()) && !sender.isOp()) {
 
-            ChatWriter.writeError(sender, "Permission fail.");
+            ChatWriter.writeError(sender, Plugin.locale.getText(sender, PERMISSION_FAIL));
 
             return true;
         }
@@ -46,7 +49,7 @@ public class Travel implements CommandExecutor, TabCompleter {
         //  Does the location exist
         if (location == null) {
 
-            ChatWriter.writeError(sender, "Cannot find location " + args[0].toLowerCase() + ".");
+            ChatWriter.writeError(sender, Plugin.locale.getText(sender, CANNOT_FIND_LOCATION));
 
             return false;
         }
@@ -55,7 +58,7 @@ public class Travel implements CommandExecutor, TabCompleter {
         //  Checking if the location is inactive
         if (!location.isActive()) {
 
-            ChatWriter.writeError(sender, "Location " + location.getName() + " is inactive.");
+            ChatWriter.writeError(sender, Plugin.locale.getText(sender, LOCATION_IS_INACTIVE));
 
             return false;
         }
@@ -67,9 +70,9 @@ public class Travel implements CommandExecutor, TabCompleter {
             player = Bukkit.getPlayer(args[1]);
 
             //  Check if the sender has permission to do that
-            if (!sender.hasPermission("") && !sender.isOp()) {
+            if (!sender.hasPermission(TRAVEL_OTHERS) && !sender.isOp()) {
 
-                ChatWriter.writeError(sender, "Permission fail.");
+                ChatWriter.writeError(sender, Plugin.locale.getText(sender, PERMISSION_FAIL));
 
                 return true;
             }
@@ -77,7 +80,7 @@ public class Travel implements CommandExecutor, TabCompleter {
             //  Check if the player is online
             if (player == null) {
 
-                ChatWriter.writeError(sender, "Cannot find the player.");
+                ChatWriter.writeError(sender, Plugin.locale.getText(sender, CANNOT_FIND_PLAYER));
 
                 return false;
             }
@@ -91,7 +94,7 @@ public class Travel implements CommandExecutor, TabCompleter {
 
                 if (!player.isOp()) {
 
-                    ChatWriter.writeError(sender, "The location has not been opened yet.");
+                    ChatWriter.writeError(sender, Plugin.locale.getText(sender, LOCATION_NOT_OPENED));
 
                     return true;
                 }
@@ -109,7 +112,7 @@ public class Travel implements CommandExecutor, TabCompleter {
 
         if (playerTraveledEvent.isCancelled()) {
 
-            ChatWriter.writeError(sender, "The action has been cancelled.");
+            ChatWriter.writeError(sender, Plugin.locale.getText(sender, ACTION_CANCELLED));
 
             return true;
         } else
@@ -128,7 +131,7 @@ public class Travel implements CommandExecutor, TabCompleter {
 
         //  Show all locations if the sender is console or OP
         //  Else only show unlocked by the player locations
-        if (sender instanceof ConsoleCommandSender || sender.isOp() || sender.hasPermission("")) {
+        if (sender instanceof ConsoleCommandSender || sender.isOp() || sender.hasPermission(LOCATIONS_LIST)) {
 
             //  Choose what list of completions to show
             //  First argument: Location name

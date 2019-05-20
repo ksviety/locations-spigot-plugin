@@ -1,9 +1,10 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.util.LocationType;
-import me.ksviety.plugins.mc.locations.util.Vector2xz;
 import me.ksviety.plugins.mc.locations.pojo.Location;
 import me.ksviety.plugins.mc.locations.util.Vector3;
 import org.bukkit.Bukkit;
@@ -42,7 +43,7 @@ public class Create extends SubCommand {
 
                 if (!(sender instanceof Player)) {
 
-                    errorMessage = "World required.";
+                    errorMessage = Plugin.locale.getText(sender, Keys.NO_WORLD);
 
                     return false;
                 } else
@@ -54,7 +55,7 @@ public class Create extends SubCommand {
 
         } else {
 
-            errorMessage = "Location name required.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_LOCATION);
 
             return false;
         }
@@ -73,12 +74,12 @@ public class Create extends SubCommand {
         //  Adding the location into the DataSave
         if (!Plugin.locationsData.addLocation(newLocation)) {
 
-            errorMessage = "Cannot add the location. Maybe the location " + args[0] + " already exists.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_CREATE_LOCATION);
 
             return false;
         }
 
-        successMessage = "The location " + args[0] + " has been successfully created.";
+        successMessage = Plugin.locale.getText(sender, Keys.LOCATION_CREATED);
 
         return true;
     }

@@ -2,6 +2,7 @@ package me.ksviety.plugins.mc.locations;
 
 import me.ksviety.plugins.mc.locations.commands.AdminLocations;
 import me.ksviety.plugins.mc.locations.commands.Travel;
+import me.ksviety.plugins.mc.locations.data.Locale;
 import me.ksviety.plugins.mc.locations.data.LocationsData;
 import me.ksviety.plugins.mc.locations.data.PlayersData;
 import me.ksviety.plugins.mc.locations.listeners.*;
@@ -16,6 +17,7 @@ public class Plugin extends JavaPlugin {
 
     public final static LocationsData locationsData = new LocationsData();
     public final static PlayersData playersData = new PlayersData();
+    public final static Locale locale = new Locale();
 
     public static NMS nms;
 
@@ -30,6 +32,7 @@ public class Plugin extends JavaPlugin {
         //  Loading the data
         locationsData.load();
         playersData.load();
+        locale.load();
 
     }
 

@@ -1,5 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -45,14 +47,14 @@ public class Activity extends SubCommand {
                     break;
                 default:
 
-                    errorMessage = "Unknown activity state.";
+                    errorMessage = Plugin.locale.getText(sender, Keys.UNKNOWN_ACTIVITY_STATE);
 
                     return false;
             }
 
         } else {
 
-            errorMessage = "Not enough arguments.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
             return false;
         }
@@ -61,7 +63,7 @@ public class Activity extends SubCommand {
         //  Checking if the location cannot be found
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0] + ". Maybe it doesn't exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }
@@ -70,7 +72,10 @@ public class Activity extends SubCommand {
 
         location.setActive(activity);
 
-        successMessage = "Successfully made " + location.getName() + " " + args[1].toLowerCase() + ".";
+        if (activity)
+            successMessage = Plugin.locale.getText(sender, Keys.MADE_LOCATION_ACTIVE);
+        else
+            successMessage = Plugin.locale.getText(sender, Keys.MADE_LOCATION_INACTIVE);
 
         return true;
     }

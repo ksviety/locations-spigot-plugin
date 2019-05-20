@@ -1,7 +1,10 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
+import me.ksviety.plugins.mc.locations.data.Locale;
 import me.ksviety.plugins.mc.locations.pojo.Location;
 import me.ksviety.plugins.mc.locations.util.StringUtil;
 import me.ksviety.plugins.mc.locations.util.Vector3;
@@ -56,12 +59,12 @@ public class Warp extends SubCommand {
                     case 2:
                         //  The X coordinate has been given
                         //  But no Y coordinate set
-                        errorMessage = "Y coordinate is not specified.";
+                        errorMessage = Plugin.locale.getText(sender, Keys.NO_COORDINATE_Y);
                         return false;
                     case 3:
                         //  The X and Y coordinates has been given
                         //  But no Z coordinate set
-                        errorMessage = "Z coordinate is not specified.";
+                        errorMessage = Plugin.locale.getText(sender, Keys.NO_COORDINATE_Z);
                         return false;
                     case 4:
                         //  Everything is fine
@@ -71,7 +74,7 @@ public class Warp extends SubCommand {
 
             } else if (!(sender instanceof Player)) {
 
-                errorMessage = "Cannot set the warp via console without specified coordinates.";
+                errorMessage = Plugin.locale.getText(sender, Keys.NO_COORDINATES);
 
                 return false;
             }
@@ -79,7 +82,7 @@ public class Warp extends SubCommand {
         } else {
 
             //  No arguments been given at all
-            errorMessage = "Location name has not been specified.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
             return false;
         }
@@ -88,7 +91,7 @@ public class Warp extends SubCommand {
         //  The location does not exist
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0] + ". Maybe it does not exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }
@@ -107,7 +110,7 @@ public class Warp extends SubCommand {
 
             } catch (NumberFormatException e) {
 
-                errorMessage = "Unable to parse the given coordinates. They must be integers.";
+                errorMessage = Plugin.locale.getText(sender, Keys.COORDINATES_NOT_INT);
 
                 return false;
             }
@@ -125,7 +128,7 @@ public class Warp extends SubCommand {
         //  Setting the warp
         location.setWarpPosition(position);
 
-        successMessage = "Warp has been successfully set to " + args[0] + ".";
+        successMessage = Plugin.locale.getText(sender, Keys.WARP_SET);
 
         return true;
     }

@@ -1,5 +1,8 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
+import joptsimple.internal.Strings;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -19,7 +22,15 @@ public class Type extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "/adminlocations set type <location-name> <type>";
+        List<String> types = new ArrayList<>();
+        String helpList;
+
+        for (LocationType type: LocationType.values())
+            types.add(type.name().toUpperCase());
+
+        helpList = "<" + Strings.join(types, "|") + ">";
+
+        return "/adminlocations set type <location-name> " + helpList;
     }
 
     //  args[0:location name
@@ -37,7 +48,7 @@ public class Type extends SubCommand {
 
         } else {
 
-            errorMessage = "Not enough arguments.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
             return false;
         }
@@ -46,7 +57,7 @@ public class Type extends SubCommand {
         //  Checking if the location exists
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0].toLowerCase() + ".";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
             return false;
         }
@@ -57,15 +68,9 @@ public class Type extends SubCommand {
 
             location.setType(type);
 
-            successMessage = "Successfully set location type " + type.name() + " to location " + location.getName() + ".";
+            successMessage = Plugin.locale.getText(sender, Keys.CHANGED_LOCATION_TYPE);
 
         } catch (IllegalArgumentException e) {
-            List<String> values = new ArrayList<>();
-
-            for (LocationType lt: LocationType.values())
-                values.add(lt.name());
-
-            errorMessage = "Available types: " + String.join(", ", values);
 
             return false;
         }

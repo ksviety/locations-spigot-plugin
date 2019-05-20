@@ -1,5 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -27,16 +29,16 @@ public class Remove extends SubCommand {
         //  Checking if there is the name
         if (args.length < 1) {
 
-            errorMessage = "Missing location name.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_LOCATION);
 
             return false;
         }
 
         if (Plugin.locationsData.removeLocation(args[0].toLowerCase()))
-            successMessage = "Location " + args[0].toLowerCase() + " has been successfully removed.";
+            successMessage = Plugin.locale.getText(sender, Keys.LOCATION_REMOVED);
         else {
 
-            errorMessage = "Cannot remove location " + args[0].toLowerCase() + ". Maybe the location doesn't exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_REMOVE_LOCATION);
 
             return false;
         }

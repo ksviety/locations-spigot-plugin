@@ -7,12 +7,15 @@ import java.io.*;
 public class FileManagement {
 
     private static final String SAVES_DIR_NAME = "saves";
+    private static final String LOCALES_DIR_NAME = "locales";
+
     private static final String SETTINGS_FILE_NAME = "settings.json";
     private static final String LOCATIONS_SAVE_FILE_NAME = "locations.json";
     private static final String PLAYERS_SAVE_FILE_NAME = "players.json";
 
     public static final File PLUGIN_DIR = Plugin.getPlugin(Plugin.class).getDataFolder();
     public static final File SAVES_DIR = new File(PLUGIN_DIR, SAVES_DIR_NAME);
+    public static final File LOCALES_DIR = new File(PLUGIN_DIR, LOCALES_DIR_NAME);
 
     public static final File SETTINGS_FILE = new File(PLUGIN_DIR, SETTINGS_FILE_NAME);
     public static final File PLAYERS_SAVE_FILE = new File(SAVES_DIR, PLAYERS_SAVE_FILE_NAME);
@@ -20,9 +23,8 @@ public class FileManagement {
 
     public static class Resources {
 
-        public static final String ENGLISH_LOCALE_FILE = "english.loc";
-        public static final String RUSSIAN_LOCALE_FILE = "russian.loc";
-        public static final String DEFAULT_SETTIGNS_FILE = "settings.json";
+        public static final String DEFAULT_LOCALE_FILE = "/default.loc";
+        public static final String DEFAULT_SETTIGNS_FILE = "/settings.json";
 
     }
 
@@ -33,7 +35,7 @@ public class FileManagement {
         BufferedReader bufferedReader = new BufferedReader(reader);
 
         while ( (currentLine = bufferedReader.readLine()) != null )
-            finalString.append(currentLine);
+            finalString.append(currentLine + "\n");
 
         bufferedReader.close();
 
@@ -41,7 +43,14 @@ public class FileManagement {
     }
 
     public static void writeFile(File file, String content) throws IOException {
-        FileWriter writer = new FileWriter(file);
+        FileWriter writer;
+
+        //  Creating missing dirs
+        PLUGIN_DIR.mkdirs();
+        SAVES_DIR.mkdirs();
+        LOCALES_DIR.mkdirs();
+
+        writer = new FileWriter(file);
 
         writer.write(content);
         writer.flush();
@@ -57,7 +66,7 @@ public class FileManagement {
         BufferedReader bufferedReader = new BufferedReader(reader);
 
         while ( (currentLine = bufferedReader.readLine()) != null )
-            finalString.append(currentLine);
+            finalString.append(currentLine + "\n");
 
         bufferedReader.close();
 

@@ -1,6 +1,7 @@
 package me.ksviety.plugins.mc.locations.listeners;
 
 import me.ksviety.plugins.mc.locations.Plugin;
+import me.ksviety.plugins.mc.locations.data.Locale;
 import me.ksviety.plugins.mc.locations.pojo.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,8 +20,6 @@ public class PlayerJoinEventListener implements Listener {
     public void onPlayerJoined(PlayerJoinEvent e) {
         List<Player> savedPlayers = Plugin.playersData.getPlayers();
         Player newPlayer;
-
-        e.getPlayer().sendMessage(e.getPlayer().getLocale());
 
         //  Checking if the player is saved
         for (Player player: savedPlayers) {

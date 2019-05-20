@@ -1,5 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
 
+import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
+
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -70,17 +72,17 @@ public class Position extends SubCommand {
             switch (args.length) {
                 case 1:
                     //  No position been given
-                    errorMessage = "Position has not been specified.";
+                    errorMessage = Plugin.locale.getText(sender, Keys.NO_POSITION);
                     return false;
                 case 3:
                     //  The X coordinate has been given
                     //  But no Y coordinate set
-                    errorMessage = "Y coordinate is not specified.";
+                    errorMessage = Plugin.locale.getText(sender, Keys.NO_COORDINATE_Y);
                     return false;
                 case 4:
                     //  The Y coordinate has been given
                     //  But no Z coordinate set
-                    errorMessage = "Z coordinate is not specified.";
+                    errorMessage = Plugin.locale.getText(sender, Keys.NO_COORDINATE_Z);
                     return false;
                 case 5:
                     //  Coordinates are specified
@@ -91,7 +93,16 @@ public class Position extends SubCommand {
         } else {
 
             //  No arguments been given at all
-            errorMessage = "Location name has not been specified.";
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
+
+            return false;
+        }
+
+        //  ERROR CHECK
+        //  Checking if the sender is not console if setting not by coordinates
+        if (!(sender instanceof Player) && !isByCoord) {
+
+            errorMessage = Plugin.locale.getText(sender, Keys.NO_COORDINATES);
 
             return false;
         }
@@ -100,7 +111,7 @@ public class Position extends SubCommand {
         //  Checking if the location exists
         if (location == null) {
 
-            errorMessage = "Cannot find location " + args[0] + ". Maybe it doesn't exist.";
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }
@@ -119,7 +130,7 @@ public class Position extends SubCommand {
 
             } catch (NumberFormatException e) {
 
-                errorMessage = "Unable to parse the given coordinates. They must be integers.";
+                errorMessage = Plugin.locale.getText(sender, Keys.COORDINATES_NOT_INT);
 
                 return false;
             }
@@ -141,7 +152,7 @@ public class Position extends SubCommand {
             //  Setting second position
             location.setFirstPosition(position);
 
-            successMessage = "The first position has been successfully set to " + args[0]  + ".";
+            successMessage = Plugin.locale.getText(sender, Keys.FIRST_POSITION_SET);
 
             return true;
         }
@@ -153,14 +164,14 @@ public class Position extends SubCommand {
             location.setSecondPosition(position);
 
 
-            successMessage = "The second position has been successfully set to " + args[0]  + ".";
+            successMessage = Plugin.locale.getText(sender, Keys.SECOND_POSITION_SET);
 
             return true;
         }
 
         //  Throwing an error message
         //  If none of possible positions has been typed
-        errorMessage = "Unknown position given.";
+        errorMessage = Plugin.locale.getText(sender, Keys.UNKNOWN_POSITION);
 
         return false;
     }
