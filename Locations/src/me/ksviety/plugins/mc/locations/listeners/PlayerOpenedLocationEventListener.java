@@ -3,7 +3,7 @@ package me.ksviety.plugins.mc.locations.listeners;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.data.Locale;
 import me.ksviety.plugins.mc.locations.events.PlayerOpenedLocationEvent;
-import org.bukkit.Sound;
+import me.ksviety.plugins.mc.locations.util.NMS.objects.Text;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -12,9 +12,10 @@ public class PlayerOpenedLocationEventListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onLocationOpened(PlayerOpenedLocationEvent e) {
+        Text location = new Text().setText(e.getLocation().getLabel());
+        Text message = new Text().setText(Plugin.locale.getText(e.getPlayer(), Locale.Keys.LOCATION_OPENED));
 
-        e.getPlayer().sendTitle(e.getLocation().getLabel(), Plugin.locale.getText(e.getPlayer(), Locale.Keys.LOCATION_OPENED), 20, 100, 20);
-        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_IRON_GOLEM_STEP, 1f, 1.7f);
+        Plugin.nms.getNMS().sendTitle(e.getPlayer(), location, message, 20, 100, 20);
 
     }
 

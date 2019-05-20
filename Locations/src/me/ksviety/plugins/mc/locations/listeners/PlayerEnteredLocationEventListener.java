@@ -29,7 +29,7 @@ public class PlayerEnteredLocationEventListener implements Listener {
         //  The location is already opened
         if (playerLocations.contains(e.getLocation().getName())) {
 
-            Plugin.nms.sendActionBarMessage(e.getPlayer(), e.getLocation().getLabel());
+            Plugin.nms.getNMS().sendGameInfo(e.getPlayer(), e.getLocation().getLabel());
 
         //  The location is not opened yet
         } else {

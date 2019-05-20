@@ -10,7 +10,7 @@
     fasttravel:
       permission: ksviety.locations.travel
       usage: /fasttravel <location-name>
-      aliases: ft
+      aliases: [ft, travel]
   permissions:
     ksviety.locations.travel.others:
       default: op

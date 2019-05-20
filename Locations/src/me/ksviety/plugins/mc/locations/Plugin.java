@@ -6,11 +6,7 @@ import me.ksviety.plugins.mc.locations.data.Locale;
 import me.ksviety.plugins.mc.locations.data.LocationsData;
 import me.ksviety.plugins.mc.locations.data.PlayersData;
 import me.ksviety.plugins.mc.locations.listeners.*;
-import me.ksviety.plugins.mc.locations.util.NMS.NMS;
-import me.ksviety.plugins.mc.locations.util.NMS.v1_13_R1;
-import me.ksviety.plugins.mc.locations.util.NMS.v1_13_R2;
-import me.ksviety.plugins.mc.locations.util.NMS.v1_14_R1;
-import org.bukkit.Bukkit;
+import me.ksviety.plugins.mc.locations.util.NMS.NMSManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Plugin extends JavaPlugin {
@@ -18,13 +14,7 @@ public class Plugin extends JavaPlugin {
     public final static LocationsData locationsData = new LocationsData();
     public final static PlayersData playersData = new PlayersData();
     public final static Locale locale = new Locale();
-
-    public static NMS nms;
-
-    private String getVersion() {
-        String p = getServer().getClass().getPackage().getName();
-        return p.substring(p.lastIndexOf('.') + 1);
-    }
+    public final static NMSManager nms = new NMSManager();
 
     @Override
     public void onLoad() {
@@ -39,21 +29,8 @@ public class Plugin extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        //  Setup NMS
-        switch (getVersion()) {
-            case NMS.v1_13_R1:
-                nms = new v1_13_R1();
-                break;
-            case NMS.v1_13_R2:
-                nms = new v1_13_R2();
-                break;
-            case NMS.v1_14_R1:
-                nms = new v1_14_R1();
-                break;
-            default:
-                Bukkit.getPluginManager().disablePlugin(this);
-                break;
-        }
+        //  NMS
+        nms.enable(this);
 
         //  Commands
         this.getCommand("adminlocations").setExecutor(new AdminLocations());
