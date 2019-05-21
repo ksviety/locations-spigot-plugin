@@ -49,6 +49,21 @@ public class Locale implements ILoadable {
         public static final String NO_COORDINATES = "no-coordinates";
         public static final String WARP_SET = "warp-set";
         public static final String LOCATION_OPENED = "location-opened";
+        public static final String UNKNOWN_LOCATION_TYPE = "unknown-location-type";
+        public static final String DB_USERNAME_SET = "db-username-set";
+        public static final String DB_PASSWORD_SET = "db-password-set";
+        public static final String DB_URL_SET = "db-url-set";
+        public static final String DB_MYSQL_SET = "db-mysql-set";
+        public static final String DB_SQLITE_SET = "db-sqlite-set";
+        public static final String DB_UNSUPPORTED_DATABASE = "db-unsupported-database";
+        public static final String ILLEGAL_ARGUMENT = "illegal-argument";
+        public static final String DB_CONNECTED = "db-connected";
+        public static final String DB_USE = "db-use";
+        public static final String DB_NOT_USE = "db-not-use";
+        public static final String DB_CANNOT_CONNECT = "db-cannot-connect";
+        public static final String LOADED = "loaded";
+        public static final String CANNOT_SAVE = "cannot-save";
+        public static final String CANNOT_LOAD = "cannot-load";
     }
 
     public String getText(Player player, String key) {

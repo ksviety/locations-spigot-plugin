@@ -2,10 +2,11 @@ package me.ksviety.plugins.mc.locations.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import me.ksviety.plugins.mc.locations.Plugin;
+import me.ksviety.plugins.mc.locations.data.database.IDatabase;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.Location;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class LocationsData implements ILoadable, ISavable {
 
-    private ArrayList<Location> locations = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
 
     //  Get a location by the name
     public Location getLocation(String name) {
@@ -60,8 +61,7 @@ public class LocationsData implements ILoadable, ISavable {
         return false;
     }
 
-    @Override
-    public boolean load() {
+    private boolean loadLocal() {
         String data;
 
         try {
@@ -74,19 +74,13 @@ public class LocationsData implements ILoadable, ISavable {
 
         } catch (IOException e) {
 
-            //  Saving empty save file if the file does not exist yet
-            if (e instanceof FileNotFoundException)
-                save();
-            else
-                return false;
-
+            return false;
         }
 
         return true;
     }
 
-    @Override
-    public boolean save() {
+    private boolean saveLocal() {
         String data;
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
@@ -106,4 +100,61 @@ public class LocationsData implements ILoadable, ISavable {
 
         return true;
     }
+
+    private boolean loadDatabase() {
+        boolean success;
+        IDatabase database = Plugin.dbManager.getDatabase();
+
+        success = database.connect();
+
+        if (success) {
+
+            locations = database.getLocations();
+
+            database.disconnect();
+        }
+
+        return success;
+    }
+
+    private boolean saveDatabase() {
+        boolean success;
+        IDatabase database = Plugin.dbManager.getDatabase();
+
+        success = database.connect();
+
+        if (success) {
+
+            database.setLocations(locations);
+
+            database.disconnect();
+        }
+
+        return success;
+    }
+
+    @Override
+    public boolean load() {
+        boolean success;
+
+        if (Plugin.databaseConfig.getConfig().use())
+            success = loadDatabase();
+        else
+            success = loadLocal();
+
+        return success;
+    }
+
+    @Override
+    public boolean save() {
+        boolean success;
+
+        if (Plugin.databaseConfig.getConfig().use())
+            success = saveDatabase();
+        else
+            success = saveLocal();
+
+        return success;
+    }
+
 }

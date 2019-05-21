@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations;
 
 import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
 
@@ -11,32 +11,27 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Priority extends SubCommand {
+public class Info extends SubCommand {
 
     @Override
     public String getCommand() {
-        return "priority";
+        return "info";
     }
 
     @Override
     public String getHelp() {
-        return "/adminlocation set priority <location-name> <priority>";
+        return "/adminlocations info <location-name>";
     }
 
-    //  args[0]: location name
-    //  args[1]: priority
     @Override
     public boolean run(CommandSender sender, String[] args) {
-        int priority;
         Location location;
 
         //  ERROR CHECK
         //  Arguments validation
-        if (args.length >= 2) {
-
+        if (args.length >= 1)
             location = Plugin.locationsData.getLocation(args[0]);
-
-        } else {
+        else {
 
             errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
 
@@ -44,7 +39,7 @@ public class Priority extends SubCommand {
         }
 
         //  ERROR CHECK
-        //  Location not found
+        //  Checking if the location exists
         if (location == null) {
 
             errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
@@ -54,33 +49,17 @@ public class Priority extends SubCommand {
 
         //  DOING THE STUFF
 
-        try {
-            priority = Integer.parseInt(args[1]);
+        sender.sendMessage(location.toString());
 
-            location.setPriority(priority);
-
-            successMessage = Plugin.locale.getText(sender, Keys.PRIORITY_APPLIED);
-
-            return true;
-        } catch (NumberFormatException e) {
-
-            errorMessage = Plugin.locale.getText(sender, Keys.PRIORITY_NOT_INT);
-
-            return false;
-        }
-
+        return true;
     }
 
     @Override
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
         List<String> locations = new ArrayList<>();
 
-        if (args.length == 1) {
-
-            for (Location location: Plugin.locationsData.getLocations())
-                locations.add(location.getName());
-
-        }
+        for (Location location: Plugin.locationsData.getLocations())
+            locations.add(location.getName());
 
         return StringUtil.clarificateIgnoreCase(args[0], locations);
     }

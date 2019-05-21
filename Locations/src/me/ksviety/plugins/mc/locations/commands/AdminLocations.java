@@ -1,6 +1,6 @@
 package me.ksviety.plugins.mc.locations.commands;
 
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.*;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.*;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import org.bukkit.block.CommandBlock;
@@ -63,8 +63,10 @@ public class AdminLocations implements CommandExecutor, TabCompleter {
         subCommandsExecutor.registerSubCommand(new Create());
         subCommandsExecutor.registerSubCommand(new Remove());
         subCommandsExecutor.registerSubCommand(new Save());
+        subCommandsExecutor.registerSubCommand(new Load());
         subCommandsExecutor.registerSubCommand(new Set());
         subCommandsExecutor.registerSubCommand(new Info());
+        subCommandsExecutor.registerSubCommand(new Database());
 
     }
 }

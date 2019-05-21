@@ -1,50 +1,56 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.set;
 
 import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
 
-import joptsimple.internal.Strings;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.pojo.Location;
-import me.ksviety.plugins.mc.locations.util.LocationType;
 import me.ksviety.plugins.mc.locations.util.StringUtil;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Type extends SubCommand {
+public class Activity extends SubCommand {
+
+    private static final String ACTIVE = "active";
+    private static final String INACTIVE = "inactive";
 
     @Override
     public String getCommand() {
-        return "type";
+        return "activity";
     }
 
     @Override
     public String getHelp() {
-        List<String> types = new ArrayList<>();
-        String helpList;
-
-        for (LocationType type: LocationType.values())
-            types.add(type.name().toUpperCase());
-
-        helpList = "<" + Strings.join(types, "|") + ">";
-
-        return "/adminlocations set type <location-name> " + helpList;
+        return "/adminlocations set activity <location-name> <active|inactive>";
     }
 
-    //  args[0:location name
-    //  args[1:location type
     @Override
     public boolean run(CommandSender sender, String[] args) {
         Location location;
-        LocationType type;
+        boolean activity;
 
         //  ERROR CHECK
         //  Arguments validation
         if (args.length == 2) {
 
             location = Plugin.locationsData.getLocation(args[0]);
+
+            switch (args[1]) {
+                case ACTIVE:
+                    activity = true;
+                    break;
+                case INACTIVE:
+                    activity = false;
+                    break;
+                default:
+
+                    errorMessage = Plugin.locale.getText(sender, Keys.UNKNOWN_ACTIVITY_STATE);
+
+                    return false;
+            }
 
         } else {
 
@@ -54,26 +60,22 @@ public class Type extends SubCommand {
         }
 
         //  ERROR CHECK
-        //  Checking if the location exists
+        //  Checking if the location cannot be found
         if (location == null) {
 
-            errorMessage = Plugin.locale.getText(sender, Keys.NO_ARGUMENTS);
+            errorMessage = Plugin.locale.getText(sender, Keys.CANNOT_FIND_LOCATION);
 
             return false;
         }
 
         //  DOING THE STUFF
-        try {
-            type = LocationType.valueOf(args[1]);
 
-            location.setType(type);
+        location.setActive(activity);
 
-            successMessage = Plugin.locale.getText(sender, Keys.CHANGED_LOCATION_TYPE);
-
-        } catch (IllegalArgumentException e) {
-
-            return false;
-        }
+        if (activity)
+            successMessage = Plugin.locale.getText(sender, Keys.MADE_LOCATION_ACTIVE);
+        else
+            successMessage = Plugin.locale.getText(sender, Keys.MADE_LOCATION_INACTIVE);
 
         return true;
     }
@@ -83,8 +85,6 @@ public class Type extends SubCommand {
         List<String> suggestions = new ArrayList<>();
         String key = args[0];
 
-        //  Return locations list as first parameter suggestion
-        //  And available location types as second
         switch (args.length) {
             case 1:
 
@@ -95,8 +95,7 @@ public class Type extends SubCommand {
             case 2:
                 key = args[1];
 
-                for (LocationType type: LocationType.values())
-                    suggestions.add(type.name());
+                suggestions = Arrays.asList(ACTIVE, INACTIVE);
 
                 break;
         }

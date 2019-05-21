@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations.set;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.set;
 
 import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
 
@@ -77,7 +77,7 @@ public class Label extends SubCommand {
         List<String> availableSuggestion = new ArrayList<>();
 
         switch (args.length) {
-            //  Return list of all available locations
+            //  Return list of all available adminlocations
             case 1:
                 for (Location location: Plugin.locationsData.getLocations())
                     availableSuggestion.add(location.getName());

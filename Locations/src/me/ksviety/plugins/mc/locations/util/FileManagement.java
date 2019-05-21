@@ -9,7 +9,7 @@ public class FileManagement {
     private static final String SAVES_DIR_NAME = "saves";
     private static final String LOCALES_DIR_NAME = "locales";
 
-    private static final String SETTINGS_FILE_NAME = "settings.json";
+    private static final String DATABASE_CONFIG_FILE_NAME = "database.json";
     private static final String LOCATIONS_SAVE_FILE_NAME = "locations.json";
     private static final String PLAYERS_SAVE_FILE_NAME = "players.json";
 
@@ -17,13 +17,16 @@ public class FileManagement {
     public static final File SAVES_DIR = new File(PLUGIN_DIR, SAVES_DIR_NAME);
     public static final File LOCALES_DIR = new File(PLUGIN_DIR, LOCALES_DIR_NAME);
 
-    public static final File SETTINGS_FILE = new File(PLUGIN_DIR, SETTINGS_FILE_NAME);
     public static final File PLAYERS_SAVE_FILE = new File(SAVES_DIR, PLAYERS_SAVE_FILE_NAME);
     public static final File LOCATIONS_SAVE_FILE = new File(SAVES_DIR, LOCATIONS_SAVE_FILE_NAME);
+    public static final File DATABASE_CONFIG_FILE = new File(PLUGIN_DIR, DATABASE_CONFIG_FILE_NAME);
 
     public static class Resources {
 
         public static final String DEFAULT_LOCALE_FILE = "/default.loc";
+
+        public static final String DATABASE_CONFIG_FILE = "/database.config";
+
         public static final String DEFAULT_SETTIGNS_FILE = "/settings.json";
 
     }
@@ -35,7 +38,7 @@ public class FileManagement {
         BufferedReader bufferedReader = new BufferedReader(reader);
 
         while ( (currentLine = bufferedReader.readLine()) != null )
-            finalString.append(currentLine + "\n");
+            finalString.append(currentLine).append("\n");
 
         bufferedReader.close();
 
@@ -66,7 +69,7 @@ public class FileManagement {
         BufferedReader bufferedReader = new BufferedReader(reader);
 
         while ( (currentLine = bufferedReader.readLine()) != null )
-            finalString.append(currentLine + "\n");
+            finalString.append(currentLine).append("\n");
 
         bufferedReader.close();
 

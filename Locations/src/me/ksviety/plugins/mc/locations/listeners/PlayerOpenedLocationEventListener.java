@@ -15,7 +15,7 @@ public class PlayerOpenedLocationEventListener implements Listener {
         Text location = new Text().setText(e.getLocation().getLabel());
         Text message = new Text().setText(Plugin.locale.getText(e.getPlayer(), Locale.Keys.LOCATION_OPENED));
 
-        Plugin.nms.getNMS().sendTitle(e.getPlayer(), location, message, 20, 100, 20);
+        Plugin.nms.getNMS().sendTitle(e.getPlayer(), location, message, 20, 80, 20);
 
     }
 

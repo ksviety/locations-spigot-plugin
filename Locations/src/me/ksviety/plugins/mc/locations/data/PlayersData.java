@@ -2,6 +2,8 @@ package me.ksviety.plugins.mc.locations.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import me.ksviety.plugins.mc.locations.Plugin;
+import me.ksviety.plugins.mc.locations.data.database.IDatabase;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.Player;
 
@@ -14,7 +16,7 @@ import java.util.UUID;
 
 public class PlayersData implements ILoadable, ISavable {
 
-    private ArrayList<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
     public Player getPlayer(UUID uuid) {
 
@@ -45,8 +47,7 @@ public class PlayersData implements ILoadable, ISavable {
         return players.add(newPlayer);
     }
 
-    @Override
-    public boolean load() {
+    private boolean loadLocal() {
         String data;
 
         try {
@@ -57,21 +58,15 @@ public class PlayersData implements ILoadable, ISavable {
             //  Parsing the data and initializing the data array with them
             players = new ArrayList<>(Arrays.asList(new Gson().fromJson(data, Player[].class)));
 
+            return true;
         } catch (IOException e) {
 
-            //  Saving empty save file if the file does not exist yet
-            if (e instanceof FileNotFoundException)
-                save();
-            else
-                return false;
-
+            return false;
         }
 
-        return true;
     }
 
-    @Override
-    public boolean save() {
+    private boolean saveLocal() {
         String data;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -83,12 +78,71 @@ public class PlayersData implements ILoadable, ISavable {
             //  Saving data
             FileManagement.writeFile(FileManagement.PLAYERS_SAVE_FILE, data);
 
+            return true;
         } catch (IOException e) {
+            e.printStackTrace();
 
             return false;
         }
 
-        return true;
+    }
+
+    private boolean loadDatabase() {
+        boolean success;
+        IDatabase database = Plugin.dbManager.getDatabase();
+
+        success = database.connect();
+
+        if (success) {
+
+            players = database.getPlayers();
+
+            database.disconnect();
+        }
+
+        return success;
+    }
+
+    private boolean saveDatabase() {
+        boolean success;
+        IDatabase database = Plugin.dbManager.getDatabase();
+
+        success = database.connect();
+
+        if (success) {
+
+            database.setPlayers(players);
+
+            database.disconnect();
+        }
+
+        return success;
+    }
+
+    @Override
+    public boolean load() {
+        boolean success;
+
+        if (Plugin.databaseConfig.getConfig().use())
+            success = loadDatabase();
+        else
+            success = loadLocal();
+
+
+        return success;
+    }
+
+    @Override
+    public boolean save() {
+        boolean success;
+
+        if (Plugin.databaseConfig.getConfig().use())
+            success = saveDatabase();
+        else
+            success = saveLocal();
+
+
+        return success;
     }
 
 }

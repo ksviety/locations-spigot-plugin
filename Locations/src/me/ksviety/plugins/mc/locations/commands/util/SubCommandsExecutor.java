@@ -63,7 +63,7 @@ public class SubCommandsExecutor {
                 boolean success = subCommand.run(sender, args);
 
                 //  Print help and error messages if the command ran unsuccessfully
-                if (!success) {
+                if (!success && subCommand.showHelp) {
 
                     //  Checking if the error message for the sub command set
                     //  Else display the default error message
@@ -92,8 +92,29 @@ public class SubCommandsExecutor {
 
     //  Executing a command by the instance
     public boolean executeSubCommand(SubCommand subCommand, CommandSender sender, String[] args) {
+        boolean success = subCommand.run(sender, args);
 
-        return subCommand.run(sender, args);
+        //  Print help and error messages if the command ran unsuccessfully
+        if (!success && subCommand.showHelp) {
+
+            //  Checking if the error message for the sub command set
+            //  Else display the default error message
+            if (subCommand.errorMessage != null)
+                ChatWriter.writeError(sender, subCommand.errorMessage);
+            else
+                ChatWriter.writeError(sender, Plugin.locale.getText(sender, Keys.COMMAND_RAN_UNSUCCESSFULLY));
+
+            ChatWriter.writeHelp(sender, subCommand.getHelp());
+
+        } else {
+            //  Display success message
+
+            if (subCommand.successMessage != null)
+                ChatWriter.writeSuccess(sender, subCommand.successMessage);
+
+        }
+
+        return true;
     }
 
 }

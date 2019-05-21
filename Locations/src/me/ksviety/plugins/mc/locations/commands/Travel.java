@@ -129,8 +129,8 @@ public class Travel implements CommandExecutor, TabCompleter {
         if (sender instanceof Player && !sender.hasPermission(command.getPermission()))
             return null;
 
-        //  Show all locations if the sender is console or OP
-        //  Else only show unlocked by the player locations
+        //  Show all adminlocations if the sender is console or OP
+        //  Else only show unlocked by the player adminlocations
         if (sender instanceof ConsoleCommandSender || sender.isOp() || sender.hasPermission(LOCATIONS_LIST)) {
 
             //  Choose what list of completions to show
@@ -138,7 +138,7 @@ public class Travel implements CommandExecutor, TabCompleter {
             //  Second argument: Player
             switch (args.length) {
                 case 1:
-                    //  Fill with all locations
+                    //  Fill with all adminlocations
                     for (Location location : Plugin.locationsData.getLocations()) {
 
                         if (location.isActive())

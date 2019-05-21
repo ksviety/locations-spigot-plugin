@@ -1,11 +1,12 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations;
 
 import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.save.All;
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.save.Locations;
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.save.Players;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.save.All;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.save.DatabaseConfig;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.save.Locations;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.save.Players;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,7 +24,7 @@ public class Save extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "/adminlocations save <players|locations|all>";
+        return "/adminlocations save <data>";
     }
 
     @Override
@@ -37,9 +38,7 @@ public class Save extends SubCommand {
             return false;
         }
 
-        subCommandsExecutor.executeSubCommand(args[0], sender, null);
-
-        return true;
+        return subCommandsExecutor.executeSubCommand(args[0], sender, null);
     }
 
     @Override
@@ -53,6 +52,7 @@ public class Save extends SubCommand {
         subCommandsExecutor.registerSubCommand(new Players());
         subCommandsExecutor.registerSubCommand(new Locations());
         subCommandsExecutor.registerSubCommand(new All());
+        subCommandsExecutor.registerSubCommand(new DatabaseConfig());
 
     }
 

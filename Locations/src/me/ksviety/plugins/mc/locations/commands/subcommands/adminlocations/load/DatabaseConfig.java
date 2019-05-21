@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations.save;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class All extends SubCommand {
+public class DatabaseConfig extends SubCommand {
 
     @Override
     public List<String> getTabCompletion(CommandSender sender, String[] args) {
@@ -16,21 +16,24 @@ public class All extends SubCommand {
 
     @Override
     public String getCommand() {
-        return "all";
+        return "dbconf";
     }
 
     @Override
     public String getHelp() {
-        return "/adminlocations save all";
+        return "/adminlocations load dbconf";
     }
 
     @Override
     public boolean run(CommandSender sender, String[] args) {
+        boolean success;
 
-        Plugin.locationsData.save();
-        Plugin.playersData.save();
+        success = Plugin.databaseConfig.load();
 
-        successMessage = Plugin.locale.getText(sender, Locale.Keys.SAVED);
+        if (success)
+            successMessage = getCommand() + ": " + Plugin.locale.getText(sender, Locale.Keys.LOADED);
+        else
+            errorMessage = getCommand() + ": " + Plugin.locale.getText(sender, Locale.Keys.CANNOT_LOAD);
 
         return true;
     }

@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations.save;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
@@ -21,15 +21,19 @@ public class Locations extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "/adminlocations save locations";
+        return "/adminlocations load locations";
     }
 
     @Override
     public boolean run(CommandSender sender, String[] args) {
+        boolean success;
 
-        Plugin.locationsData.save();
+        success = Plugin.locationsData.load();
 
-        successMessage = Plugin.locale.getText(sender, Locale.Keys.SAVED);
+        if (success)
+            successMessage = getCommand() + ": " + Plugin.locale.getText(sender, Locale.Keys.LOADED);
+        else
+            errorMessage = getCommand() + ": " + Plugin.locale.getText(sender, Locale.Keys.CANNOT_LOAD);
 
         return true;
     }

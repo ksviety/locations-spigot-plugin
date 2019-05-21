@@ -8,6 +8,7 @@ public abstract class SubCommand {
 
     protected String errorMessage;
     protected String successMessage;
+    protected boolean showHelp = true;
 
     public abstract List<String> getTabCompletion(CommandSender sender, String[] args);
 

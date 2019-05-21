@@ -4,6 +4,7 @@
     <root id="archive" name="Locations.jar">
       <element id="module-output" name="Locations" />
       <element id="file-copy" path="$USER_HOME$/Documents/gson-2.6.2.jar" />
+      <element id="library" level="project" name="mysql-connector-java-8.0.16" />
     </root>
   </artifact>
 </component>

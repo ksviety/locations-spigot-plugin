@@ -101,6 +101,10 @@ public class Location {
 
     //  **  SETTERS **  //
 
+    public void setWorld(String world) {
+        this.world = world;
+    }
+
     public boolean setName(String name) {
 
         //  Making sure it doesn't contain any spaces as they might cause trouble
@@ -173,8 +177,12 @@ public class Location {
 
         for (Player player: Bukkit.getOnlinePlayers()) {
 
-            if (this.players.contains(player.getUniqueId()))
-                players.add(player.getName());
+            for (UUID uuid: this.players) {
+
+                if (uuid.equals(player.getUniqueId()))
+                    players.add(player.getName());
+
+            }
 
         }
 

@@ -1,4 +1,4 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations;
 
 import static me.ksviety.plugins.mc.locations.data.Locale.Keys;
 

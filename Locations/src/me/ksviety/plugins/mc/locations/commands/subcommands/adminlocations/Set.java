@@ -1,6 +1,6 @@
-package me.ksviety.plugins.mc.locations.commands.subcommands.locations;
+package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations;
 
-import me.ksviety.plugins.mc.locations.commands.subcommands.locations.set.*;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.set.*;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import org.bukkit.command.CommandSender;
