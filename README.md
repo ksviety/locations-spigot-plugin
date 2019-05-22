@@ -35,5 +35,5 @@ Provided fast travel and location opening system with custom events.
 
 # Info
 <h2>Save Load</h2>
-<p>Stores chosen data to the database or local storage</p> <br/>
-<strong id="data">Provided data types: </strong><i>locations, players, dbconf</i>
+<p>Stores chosen data to the local storage or database if enabled.</p>
+<strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
