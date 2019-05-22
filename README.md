@@ -34,10 +34,10 @@ Provided fast travel and location opening system with custom events.
 /alocations database set use <<i>yes|no</i>> <br/>
 
 # Permissions
-/alocations - ksviety.locations.admin
-/travel - ksviety.locations.travel
-/travel <location-name> [nickname] - ksviety.locations.travel.others
-see all existing locations in /travel - ksviety.locations.list
+/alocations - ksviety.locations.admin <br/>
+/travel - ksviety.locations.travel <br/>
+use /travel for other players - ksviety.locations.travel.others <br/>
+see all existing locations in /travel - ksviety.locations.list 
 
 # Info
 <h2>Save and load</h2>
