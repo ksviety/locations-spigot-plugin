@@ -105,7 +105,7 @@ Provided fast travel and location opening system with custom events.
   /alocations database set username root <br/>
   /alocations database set password 123 <br/>
   /alocations database set url jdbc:mysql://localhost:3306/database <br/>
-  /alocations database check (<icolor="lightgray"><font size="11">Checking whether the connection is success.</font></i>) <br/>
+  /alocations database check (<i color="lightgray"><font size="8">Checking whether the connection is success.</font></i>) <br/>
   /alocations database set use yes <br/>
 </p>
 
