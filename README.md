@@ -99,6 +99,10 @@ Provided fast travel and location opening system with custom events.
 <p>
   Database might be confugured from the game via the commands or in file 'dbconf.json' in the plugin folder. If the file does not exist you have to do '/alocations save dbconf', it will store the default database configurations (if you had already setup the database, it will save the current datas).
 </p>
+<strong>Currently supported databases:</strong> <br/>
+<ul>
+  <li>mysql</li>
+</ul>
 <h3>Setting up database via the commands (<i>ex.</i>)</h3>
 <p>
   /alocations database set database mysql <br/>
