@@ -6,7 +6,6 @@ Provided fast travel and location opening system with custom events.
 </p>
 
 # Commands
-<strong>
 <h3>Fast travel</h3>
 /travel <<i>location-name</i>> [<i>nickname</i>]
 <h3>Administration</h3>
@@ -33,4 +32,3 @@ Provided fast travel and location opening system with custom events.
 /alocations database set password <<i>password</i>> <br/>
 /alocations database set url <<i>url</i>> <br/>
 /alocations database set use <<i>yes|no</i>> <br/>
-</strong>
