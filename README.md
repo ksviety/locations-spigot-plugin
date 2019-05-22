@@ -7,6 +7,6 @@ Provided fast travel and location opening system with custom events.
 
 # Commands
 <strong>
-<h5>Fast travel</h5>
-/travel <<i>location-name</i>> [<i>nickname</i>]
+<h3>Fast travel</h3>
+<t/>/travel <<i>location-name</i>> [<i>nickname</i>]
 </strong>
