@@ -1,7 +1,7 @@
 # Locations
 <strong>RPG Locations</strong>
 <p>
-Spigot pluign. The pluign adds locations like in PRG games.
+Spigot plugin. The plugin adds locations like in PRG games.
 Provided fast travel and location opening system with custom events.
 </p>
 
