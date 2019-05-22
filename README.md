@@ -9,7 +9,7 @@ Provided fast travel and location opening system with custom events.
 <h3>Fast travel</h3>
 /travel <<i>location-name</i>> [<i>nickname</i>]
 <h3>Administration</h3>
-<h4>Data control</h4>
+<h4>Data control</h4> (<a href="save-load">more</a>)
 /alocations save <<i><a href="#data">data</a></i>> <br/>
 /alocations load <<i><a href="#data">data</a></i>> <br/>
 <h4>Location control</h4>
