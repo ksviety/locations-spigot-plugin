@@ -103,7 +103,13 @@ Provided fast travel and location opening system with custom events.
 <ul>
   <li>
     <strong>PlayerEntredLocationEvent</strong> <br/>
-    <p>called when a player entered a location.</p>
+    Called when a player entered a location. <br/>
+    Extends: <i>PlayerEvent</i> <br/>
+    Cancellable: yes <br/>
+    Provides:
+    <ul>
+      <li>The location that was entered by the player.</li>
+    </ul>
   </li>
   <li><strong>PlayerLeftLocationEvent</strong> - called when a player left a location.</li>
   <li><strong>PlayerOpenedLocationEvent</strong> - called when a player opened a location.</li>
