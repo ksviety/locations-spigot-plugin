@@ -92,8 +92,23 @@ Provided fast travel and location opening system with custom events.
 </p>
 <h3>Warp</h3>
 <p>
-  Warp is the point where a player that used fast travel is gonna be appeared. The command sets the warp position of the location to your current position in the world. Also might be set via console with specified coordinates after the location name. 
+  Warp is the point where a player that used fast travel is gonna be appeared. The command sets the warp position of the location to your current position in the world. Also might be set via console with specified coordinates after the location name. The warp should be set inside the location because when a player used fast travel it calls the PlayerEntredLocationEvent event.
 </p>
+
+# API
+
+<h2>Events</h2>
+<strong>Package: </strong>me.ksviety.plugins.mc.locations.events <br/>
+<strong>Provided events:</strong>
+<ul>
+  <li>
+    <strong>PlayerEntredLocationEvent</strong> <br/>
+    <p>called when a player entered a location.</p>
+  </li>
+  <li><strong>PlayerLeftLocationEvent</strong> - called when a player left a location.</li>
+  <li><strong>PlayerOpenedLocationEvent</strong> - called when a player opened a location.</li>
+  <li><strong>PlayerTraveledEvent</strong> - called when a player used fast travel.</li>
+</ul>
 
 
 
