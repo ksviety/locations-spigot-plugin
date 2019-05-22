@@ -21,8 +21,8 @@ Provided fast travel and location opening system with custom events.
 /alocations set type <<i>location-name</i>> <<i><a href="#types">type</a></i>> <br/>
 /alocations set activity <<i>location-name</i>> <<i>active|inactive</i>> <br/>
 /alocations set priority <<i>location-name</i>> <<i>priority</i>> <br/>
-/alocations set position <<i>location-name</i>> <<i>first|second</i>> [<i>X Y Z</i>] <br/>
-/alocations set warp <<i>location-name</i>> [<i>X Y Z</i>] <br/>
+/alocations set position <<i>location-name</i>> <<i>first|second</i>> [<i>x y z</i>] <br/>
+/alocations set warp <<i>location-name</i>> [<i>x y z</i>] <br/>
 <h4>Database control</h4>
 /alocations database check <br/>
 /alocations database info <br/>
@@ -32,3 +32,8 @@ Provided fast travel and location opening system with custom events.
 /alocations database set password <<i>password</i>> <br/>
 /alocations database set url <<i>url</i>> <br/>
 /alocations database set use <<i>yes|no</i>> <br/>
+
+# Info
+<h2>Save Load</h2>
+<p>Stores chosen data to the database or local storage</p> <br/>
+<strong id="data">Provided data types: </strong><i>locations, players, dbconf</i>
