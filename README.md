@@ -103,17 +103,46 @@ Provided fast travel and location opening system with custom events.
 <ul>
   <li>
     <strong>PlayerEntredLocationEvent</strong> <br/>
-    Called when a player entered a location. <br/>
-    Extends: <i>PlayerEvent</i> <br/>
-    Cancellable: yes <br/>
-    Provides:
-    <ul>
-      <li>The location that was entered by the player.</li>
-    </ul>
+    <p>
+      Called when a player entered a location. <br/>
+      Extends: <i>PlayerEvent</i> <br/>
+      Cancellable: <i>yes</i> <br/>
+      Provides:
+      <ul>
+        <li>The location that was entered by the player.</li>
+      </ul>
+    </p>
   </li>
-  <li><strong>PlayerLeftLocationEvent</strong> - called when a player left a location.</li>
-  <li><strong>PlayerOpenedLocationEvent</strong> - called when a player opened a location.</li>
-  <li><strong>PlayerTraveledEvent</strong> - called when a player used fast travel.</li>
+  <li><strong>PlayerLeftLocationEvent</strong> <br/>
+    <p>
+      Extends: <i>PlayerEvent</i> <br/>
+      Cancellable: <i>yes</i> <br/>
+      Provides:
+      <ul>
+        <li>The location that was left by the player.</li>
+      </ul>
+    </p>
+  </li>
+  <li><strong>PlayerOpenedLocationEvent</strong> <br/> 
+    <p>
+      Extends: <i>PlayerEvent</i> <br/>
+      Cancellable: <i>yes</i> <br/>
+      Provides:
+      <ul>
+        <li>The location that was opened by the player.</li>
+      </ul>
+    </p>
+  </li>
+  <li><strong>PlayerTraveledEvent</strong> <br/>
+    <p>
+      Extends: <i>PlayerEvent</i> <br/>
+      Cancellable: <i>yes</i> <br/>
+      Provides:
+      <ul>
+        <li>The location the player traveled to.</li>
+      </ul>
+    </p>
+  </li>
 </ul>
 
 
