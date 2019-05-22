@@ -63,7 +63,7 @@ see all existing locations in /travel - ksviety.locations.list
   /alocations database use no <br/>
   /alocations save <<i><a href="#data">data</a></i>> <br/>
 </p>
-<strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
+<strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save/load everything)</i>
 
 <h2 id="#types">Location types</h2>
 <p>
