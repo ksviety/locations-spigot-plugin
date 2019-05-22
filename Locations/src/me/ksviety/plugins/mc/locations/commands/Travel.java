@@ -3,6 +3,7 @@ package me.ksviety.plugins.mc.locations.commands;
 import static me.ksviety.plugins.mc.locations.data.Locale.Keys.*;
 import static me.ksviety.plugins.mc.locations.commands.util.Permissions.*;
 
+import me.ksviety.plugins.mc.locations.API;
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.events.PlayerTraveledEvent;
 import me.ksviety.plugins.mc.locations.pojo.Location;
@@ -24,7 +25,6 @@ public class Travel implements CommandExecutor, TabCompleter {
         Player player;
         List<String> locations;
         boolean isByPlayer = false;
-        PlayerTraveledEvent playerTraveledEvent;
 
         //  PERMISSION CHECK
         if (!sender.hasPermission(command.getPermission()) && !sender.isOp()) {
@@ -103,22 +103,8 @@ public class Travel implements CommandExecutor, TabCompleter {
 
         }
 
-        //  Creating and calling the event
-        //  Then checking if no listeners have cancelled it
-        //  And moving the player if so
-        playerTraveledEvent = new PlayerTraveledEvent(player, location);
-
-        Bukkit.getPluginManager().callEvent(playerTraveledEvent);
-
-        if (playerTraveledEvent.isCancelled()) {
-
-            ChatWriter.writeError(sender, Plugin.locale.getText(sender, ACTION_CANCELLED));
-
-            return true;
-        } else
-            player.teleport(location.getWarpLocation());
-
-        return true;
+        //  Traveling the player
+        return API.getLocationsPlayer(player).travel(location);
     }
 
     @Override
@@ -129,8 +115,8 @@ public class Travel implements CommandExecutor, TabCompleter {
         if (sender instanceof Player && !sender.hasPermission(command.getPermission()))
             return null;
 
-        //  Show all adminlocations if the sender is console or OP
-        //  Else only show unlocked by the player adminlocations
+        //  Show all locations if the sender is console or OP
+        //  Else only show unlocked by the player locations
         if (sender instanceof ConsoleCommandSender || sender.isOp() || sender.hasPermission(LOCATIONS_LIST)) {
 
             //  Choose what list of completions to show
@@ -138,7 +124,7 @@ public class Travel implements CommandExecutor, TabCompleter {
             //  Second argument: Player
             switch (args.length) {
                 case 1:
-                    //  Fill with all adminlocations
+                    //  Fill with all locations
                     for (Location location : Plugin.locationsData.getLocations()) {
 
                         if (location.isActive())

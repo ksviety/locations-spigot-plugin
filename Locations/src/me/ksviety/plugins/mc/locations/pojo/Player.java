@@ -1,6 +1,7 @@
 package me.ksviety.plugins.mc.locations.pojo;
 
 import me.ksviety.plugins.mc.locations.Plugin;
+import me.ksviety.plugins.mc.locations.events.PlayerTraveledEvent;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -39,6 +40,19 @@ public class Player {
             return false;
 
         return locations.add(name);
+    }
+
+    public boolean travel(Location to) {
+        PlayerTraveledEvent playerTraveledEvent = new PlayerTraveledEvent(Bukkit.getPlayer(uuid), to);
+
+        Bukkit.getPluginManager().callEvent(playerTraveledEvent);
+
+        if (playerTraveledEvent.isCancelled())
+            return false;
+
+        Bukkit.getPlayer(uuid).teleport(to.getWarpLocation());
+
+        return true;
     }
 
     @Override
