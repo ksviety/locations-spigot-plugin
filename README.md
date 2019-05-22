@@ -82,7 +82,7 @@ Provided fast travel and location opening system with custom events.
 <h2 id="pos-warp">Location positions/warp</h2>
 <h3>Positions</h3>
 <p>
-  Sets chosen position of the location to your current position in the world - generates the cube collider of the location by the scheme below. <br/>
+  Sets chosen position of the location to your current position in the world - generates a cube collider of the location by the scheme below. <br/>
   <img src="https://github.com/ksviety/ksviety.github.io/blob/master/9qPLw.jpg" /> <br/>
   <strong>Available positions</strong> <br/>
   <ul>
