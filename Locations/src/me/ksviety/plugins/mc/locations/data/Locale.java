@@ -2,6 +2,7 @@ package me.ksviety.plugins.mc.locations.data;
 
 import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
+import me.ksviety.plugins.mc.locations.util.Files;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -139,18 +140,20 @@ public class Locale implements ILoadable {
 
         try {
 
-            paths = FileManagement.LOCALES_DIR.list(new Filter());
+            Files.LOCALES_DIR.mkdirs();
+
+            paths = Files.LOCALES_DIR.list(new Filter());
             paths = paths == null? new String[0]: paths; // Avoiding nullPointer
 
             //  Add default locale to the locales list
-            data = FileManagement.readResourceFile(FileManagement.Resources.DEFAULT_LOCALE_FILE);
+            data = FileManagement.readResourceFile(Files.Resources.DEFAULT_LOCALE_FILE);
             prop = new Properties();
             prop.load(new StringReader(data));
             locales.add(prop);
 
             //  Load locales array
             for (String path: paths) {
-                File file = new File(FileManagement.LOCALES_DIR, path);
+                File file = new File(Files.LOCALES_DIR, path);
 
                 data = FileManagement.readFile(file);
                 prop = new Properties(); // Create new object in memory

@@ -6,6 +6,7 @@ import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.data.database.IDatabase;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
 import me.ksviety.plugins.mc.locations.pojo.Location;
+import me.ksviety.plugins.mc.locations.util.Files;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class LocationsData implements ILoadable, ISavable {
         try {
 
             //  Loading JSON from the save file
-            data = FileManagement.readFile(FileManagement.LOCATIONS_SAVE_FILE);
+            data = FileManagement.readFile(Files.LOCATIONS_SAVE_FILE);
 
             //  Parsing the data and initializing the data array with them
             locations = new ArrayList<>(Arrays.asList(new Gson().fromJson(data, Location[].class)));
@@ -90,7 +91,7 @@ public class LocationsData implements ILoadable, ISavable {
             data = gson.toJson(locations.toArray());
 
             //  Saving the data
-            FileManagement.writeFile(FileManagement.LOCATIONS_SAVE_FILE, data);
+            FileManagement.writeFile(Files.LOCATIONS_SAVE_FILE, data);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.ksviety.plugins.mc.locations.pojo.Database;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
+import me.ksviety.plugins.mc.locations.util.Files;
 
 import java.io.*;
 
@@ -33,7 +34,7 @@ public class DatabaseConfig implements ILoadable, ISavable {
 
         try {
 
-            data = FileManagement.readFile(FileManagement.DATABASE_CONFIG_FILE);
+            data = FileManagement.readFile(Files.DATABASE_CONFIG_FILE);
 
             database = new Gson().fromJson(data, Database.class);
 
@@ -55,7 +56,7 @@ public class DatabaseConfig implements ILoadable, ISavable {
 
             data = new GsonBuilder().setPrettyPrinting().create().toJson(database);
 
-            FileManagement.writeFile(FileManagement.DATABASE_CONFIG_FILE, data);
+            FileManagement.writeFile(Files.DATABASE_CONFIG_FILE, data);
 
         } catch (IOException e) {
 
