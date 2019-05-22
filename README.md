@@ -38,7 +38,7 @@ Provided fast travel and location opening system with custom events.
 <h4 id="save-load">Saving/loading data</h4>
 <p>
   <strong>/alocations save </strong><br/> 
-  Stores chosen data to the local storage or database if enabled.
+  Stores chosen data to the local storage or database if enabled. <br/>
   <strong>/alocations load </strong><br/>
   Loads chosen data from the local storage or database if enabled.
 </p>
@@ -58,6 +58,12 @@ Provided fast travel and location opening system with custom events.
   /alocations save <<i><a href="#data">data</a></i>> <br/>
 </p>
 <strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
+
+<h2>Location types</h2>
+<ul>
+  <li>CITY</li>
+  <li>OTHER</li>
+</ul>
 
 
 
