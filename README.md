@@ -60,6 +60,9 @@ Provided fast travel and location opening system with custom events.
 <strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
 
 <h2>Location types</h2>
+<p>
+  At the moment the value might be left on as currently it does not affect on anything at all. Planned to be used for something in the   future.
+</p>
 <strong>Currently available types</strong>
 <ul>
   <li>city</li>
