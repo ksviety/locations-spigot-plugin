@@ -95,6 +95,20 @@ Provided fast travel and location opening system with custom events.
   Warp is the point where a player that used fast travel is gonna be appeared. The command sets the warp position of the location to your current position in the world. Also might be set via console with specified coordinates after the location name. The warp should be set inside the location because when a player used fast travel it calls the PlayerEntredLocationEvent event.
 </p>
 
+<h2 id="database">Database setup</h2>
+<p>
+  Database might be confugured from the game via the commands or in file 'dbconf.json' in the plugin folder. If the file does not exist you have to do '/alocations save dbconf', it will store the default database configurations (if you had already setup the database, it will save the current datas).
+</p>
+<h3>Setting up database via the commands (<i>ex.</i>)</h3>
+<p>
+  /alocations database set database mysql <br/>
+  /alocations database set username root <br/>
+  /alocations database set password 123 <br/>
+  /alocations database set url jdbc:mysql://localhost:3306/database
+  /alocations database check (<i color="lightgray">Checking whether the connection is success.</i>) <br/>
+  /alocations database set use yes <br/>
+</p>
+
 # API
 
 <h2>Events</h2>
