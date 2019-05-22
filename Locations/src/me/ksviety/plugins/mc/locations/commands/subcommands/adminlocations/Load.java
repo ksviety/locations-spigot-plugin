@@ -1,10 +1,7 @@
 package me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations;
 
 import me.ksviety.plugins.mc.locations.Plugin;
-import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load.All;
-import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load.DatabaseConfig;
-import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load.Locations;
-import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load.Players;
+import me.ksviety.plugins.mc.locations.commands.subcommands.adminlocations.load.*;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommand;
 import me.ksviety.plugins.mc.locations.commands.util.SubCommandsExecutor;
 import me.ksviety.plugins.mc.locations.data.Locale;
@@ -54,6 +51,7 @@ public class Load extends SubCommand {
         subCommandsExecutor.registerSubCommand(new DatabaseConfig());
         subCommandsExecutor.registerSubCommand(new Locations());
         subCommandsExecutor.registerSubCommand(new Players());
+        subCommandsExecutor.registerSubCommand(new Locales());
 
     }
 

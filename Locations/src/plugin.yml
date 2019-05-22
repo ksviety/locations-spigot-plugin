@@ -16,5 +16,5 @@
       default: op
     ksviety.locations.list:
       default: op
-      description: Unlocks all adminlocations
+      description: Unlocks all locations
 

@@ -1,4 +1,4 @@
-language=default
+language=default,en_us
 location-not-opened=The location is not opened yet.
 permission-fail=Permission fail.
 cannot-find-player=Cannot find the player.

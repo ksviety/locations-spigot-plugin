@@ -1,16 +1,19 @@
 package me.ksviety.plugins.mc.locations.data;
 
+import me.ksviety.plugins.mc.locations.Plugin;
 import me.ksviety.plugins.mc.locations.util.FileManagement;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 
 //  TODO add multi-language support
 public class Locale implements ILoadable {
 
-    //private Map<String, Properties> locales = new TreeMap<>();
+    private Map<List<String>, Properties> locales = new HashMap<>();
     private Properties defaultLocale = new Properties();
 
     //  THIS IS THE MOST BORING PART OF ALL THE PLUGIN
@@ -67,6 +70,17 @@ public class Locale implements ILoadable {
     }
 
     public String getText(Player player, String key) {
+
+        for (Properties locale: locales.values()) {
+
+            if (locale.getProperty(Keys.LANGUAGE).contains(getLocale(player))) {
+                String text = locale.getProperty(key);
+
+                return text == null? defaultLocale.getProperty(key): text;
+            }
+
+        }
+
         return defaultLocale.getProperty(key);
     }
 
@@ -83,24 +97,84 @@ public class Locale implements ILoadable {
 
     }
 
-    private class filter implements FileFilter {
+    private String getLocale(Player p) {
+        String language = "";
+
+        try {
+            Object ep = getMethod("getHandle", p.getClass()).invoke(p, (Object[]) null);
+            Field f = ep.getClass().getDeclaredField("locale");
+            f.setAccessible(true);
+            language = (String) f.get(ep);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return language.toLowerCase();
+    }
+    private Method getMethod(String name, Class<?> clazz) {
+
+        for (Method m : clazz.getDeclaredMethods()) {
+            if (m.getName().equals(name))
+                return m;
+        }
+
+        return null;
+    }
+
+    private static class Filter implements FilenameFilter {
 
         @Override
-        public boolean accept(File pathname) {
-            return pathname.isFile() && pathname.toString().endsWith(".loc");
+        public boolean accept(File dir, String name) {
+            return name.toLowerCase().endsWith(".loc");
         }
 
     }
 
     @Override
     public boolean load() {
+        String data;
+        List<Properties> locales = new ArrayList<>();
+        String[] paths;
+        Properties prop;
 
         try {
 
-            defaultLocale.load(new StringReader(FileManagement.readResourceFile(FileManagement.Resources.DEFAULT_LOCALE_FILE)));
+            paths = FileManagement.LOCALES_DIR.list(new Filter());
+            paths = paths == null? new String[0]: paths; // Avoiding nullPointer
 
+            //  Add default locale to the locales list
+            data = FileManagement.readResourceFile(FileManagement.Resources.DEFAULT_LOCALE_FILE);
+            prop = new Properties();
+            prop.load(new StringReader(data));
+            locales.add(prop);
+
+            //  Load locales array
+            for (String path: paths) {
+                File file = new File(FileManagement.LOCALES_DIR, path);
+
+                data = FileManagement.readFile(file);
+                prop = new Properties(); // Create new object in memory
+                prop.load(new StringReader(data));
+                locales.add(prop);
+
+            }
+
+            //  Set up locales map
+            for (Properties locale: locales) {
+                List<String> languages = Arrays.asList(locale.getProperty(Keys.LANGUAGE).replaceAll(" ", "").split(","));
+                this.locales.put(languages, locale);
+
+                if (languages.contains("default"))
+                    this.defaultLocale = locale;
+
+                Plugin.getPlugin(Plugin.class).getLogger().warning(String.join(", ", languages));
+            }
+
+            Plugin.getPlugin(Plugin.class).getLogger().warning("Fallback(default) locale: " + defaultLocale.getProperty(Keys.LANGUAGE));
         } catch (IOException e) {
             e.printStackTrace();
+
+            return false;
         }
 
         return true;

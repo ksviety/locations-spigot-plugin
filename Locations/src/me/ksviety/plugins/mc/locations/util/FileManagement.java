@@ -3,13 +3,14 @@ package me.ksviety.plugins.mc.locations.util;
 import me.ksviety.plugins.mc.locations.Plugin;
 
 import java.io.*;
+import java.nio.charset.Charset;
 
 public class FileManagement {
 
     private static final String SAVES_DIR_NAME = "saves";
     private static final String LOCALES_DIR_NAME = "locales";
 
-    private static final String DATABASE_CONFIG_FILE_NAME = "database.json";
+    private static final String DATABASE_CONFIG_FILE_NAME = "dbconf.json";
     private static final String LOCATIONS_SAVE_FILE_NAME = "locations.json";
     private static final String PLAYERS_SAVE_FILE_NAME = "players.json";
 
@@ -25,17 +26,13 @@ public class FileManagement {
 
         public static final String DEFAULT_LOCALE_FILE = "/default.loc";
 
-        public static final String DATABASE_CONFIG_FILE = "/database.config";
-
-        public static final String DEFAULT_SETTIGNS_FILE = "/settings.json";
-
     }
 
     public static String readFile(File file) throws IOException {
         String currentLine;
         StringBuilder finalString = new StringBuilder();
-        FileReader reader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(reader);
+        FileInputStream input = new FileInputStream(file);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
 
         while ( (currentLine = bufferedReader.readLine()) != null )
             finalString.append(currentLine).append("\n");

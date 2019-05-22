@@ -31,6 +31,7 @@ public class All extends SubCommand {
         subCommandsExecutor.executeSubCommand(new Locations(), sender, new String[0]);
         subCommandsExecutor.executeSubCommand(new Players(), sender, new String[0]);
         subCommandsExecutor.executeSubCommand(new DatabaseConfig(), sender, new String[0]);
+        subCommandsExecutor.executeSubCommand(new Locales(), sender, new String[0]);
 
         return true;
     }
