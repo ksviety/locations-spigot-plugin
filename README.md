@@ -34,6 +34,36 @@ Provided fast travel and location opening system with custom events.
 /alocations database set use <<i>yes|no</i>> <br/>
 
 # Info
-<h2>Save Load</h2>
-<p>Stores chosen data to the local storage or database if enabled.</p>
+<h2>Save and load</h2>
+<h4 id="save-load">Saving/loading data</h4>
+<p>
+  <strong>/alocations save </strong><br/> 
+  Stores chosen data to the local storage or database if enabled.
+  <strong>/alocations load </strong><br/>
+  Loads chosen data from the local storage or database if enabled.
+</p>
+<h4 id="move-db-ls">Moving data between database and local storage</h4>
+<strong>Local storage to database</strong>
+<p>
+  /alocations database use no <br/>
+  /alocations load <<i><a href="#data">data</a></i>> <br/>
+  /alocations database use yes <br/>
+  /alocations save <<i><a href="#data">data</a></i>> <br/>
+</p>
+<strong>Database to local storage</strong>
+<p>
+  /alocations database use yes <br/>
+  /alocations load <<i><a href="#data">data</a></i>> <br/>
+  /alocations database use no <br/>
+  /alocations save <<i><a href="#data">data</a></i>> <br/>
+</p>
 <strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
+
+
+
+
+
+
+
+
+
