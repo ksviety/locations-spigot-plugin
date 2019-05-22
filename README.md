@@ -8,5 +8,7 @@ Provided fast travel and location opening system with custom events.
 # Commands
 <strong>
 <h3>Fast travel</h3>
-<t/>/travel <<i>location-name</i>> [<i>nickname</i>]
+/travel <<i>location-name</i>> [<i>nickname</i>]
+<h3>Administration</h3>
+/alocations save <<i>players|locations|dbconf|all</i>> - <r>Save data</r>
 </strong>
