@@ -21,8 +21,8 @@ Provided fast travel and location opening system with custom events.
 /alocations set type <<i>location-name</i>> <<i><a href="#types">type</a></i>> <br/>
 /alocations set activity <<i>location-name</i>> <<i>active|inactive</i>> <br/>
 /alocations set priority <<i>location-name</i>> <<i>priority</i>> (<i><a href="#priority">more</a></i>)<br/>
-/alocations set position <<i>location-name</i>> <<i>first|second</i>> [<i>x y z</i>] (<i><a href="#pos-warp">more</a></i>) <br/>
-/alocations set warp <<i>location-name</i>> [<i>x y z</i>] (<i><a href="#pos-warp">more</a></i>) <br/>
+/alocations set position <<i>location-name</i>> <<i>first|second</i>> (<i><a href="#pos-warp">more</a></i>) <br/>
+/alocations set warp <<i>location-name</i>> (<i><a href="#pos-warp">more</a></i>) <br/>
 <h4>Database control</h4>
 /alocations database check <br/>
 /alocations database info <br/>
@@ -80,6 +80,20 @@ Provided fast travel and location opening system with custom events.
 </p>
 
 <h2 id="pos-warp">Location positions/warp</h2>
+<h3>Positions</h3>
+<p>
+  Sets chosen position of the location to your current position in the world - generates the cube collider of the location by the scheme below. <br/>
+  <img src="https://github.com/ksviety/ksviety.github.io/blob/master/9qPLw.jpg" /> <br/>
+  <strong>Available positions</strong> <br/>
+  <ul>
+    <li>first</li>
+    <li>second</li>
+  </ul>
+</p>
+<h3>Warp</h3>
+<p>
+  Warp is the point where a player that used fast travel is gonna be appeared. The command sets the warp position of the location to your current position in the world. Also might be set via console with specified coordinates after the location name. 
+</p>
 
 
 
