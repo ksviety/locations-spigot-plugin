@@ -60,9 +60,14 @@ Provided fast travel and location opening system with custom events.
 <strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
 
 <h2>Location types</h2>
+<strong>Currently available types</strong>
 <ul>
-  <li>CITY</li>
-  <li>OTHER</li>
+  <li>city</li>
+  <li>village</li>
+  <li>dungeon</li>
+  <li>house</li>
+  <li>store</li>
+  <li>other</li>
 </ul>
 
 
