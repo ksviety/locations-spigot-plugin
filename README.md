@@ -20,9 +20,9 @@ Provided fast travel and location opening system with custom events.
 /alocations set label <<i>location-name</i>> <<i>label</i>> <br/>
 /alocations set type <<i>location-name</i>> <<i><a href="#types">type</a></i>> <br/>
 /alocations set activity <<i>location-name</i>> <<i>active|inactive</i>> <br/>
-/alocations set priority <<i>location-name</i>> <<i>priority</i>> <br/>
-/alocations set position <<i>location-name</i>> <<i>first|second</i>> [<i>x y z</i>] <br/>
-/alocations set warp <<i>location-name</i>> [<i>x y z</i>] <br/>
+/alocations set priority <<i>location-name</i>> <<i>priority</i>> (<i><a href="#priority">more</a></i>)<br/>
+/alocations set position <<i>location-name</i>> <<i>first|second</i>> [<i>x y z</i>] (<i><a href="#pos-warp">more</a></i>) <br/>
+/alocations set warp <<i>location-name</i>> [<i>x y z</i>] (<i><a href="#pos-warp">more</a></i>) <br/>
 <h4>Database control</h4>
 /alocations database check <br/>
 /alocations database info <br/>
@@ -59,9 +59,9 @@ Provided fast travel and location opening system with custom events.
 </p>
 <strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save everything)</i>
 
-<h2>Location types</h2>
+<h2 id="#types">Location types</h2>
 <p>
-  At the moment the value might be left on as currently it does not affect on anything at all. Planned to be used for something in the   future.
+  At the moment the value might be left on as currently it does not affect on anything at all. Planned to be used for something in   future.
 </p>
 <strong>Currently available types</strong>
 <ul>
@@ -72,6 +72,15 @@ Provided fast travel and location opening system with custom events.
   <li>store</li>
   <li>other</li>
 </ul>
+
+<h2 id="#priority">Location priority</h2>
+<p>
+  Does not affect on anything at the moment. <br/>
+  The priority value must be an integer.
+</p>
+
+<h2 id="pos-warp">Location positions/warp</h2>
+
 
 
 
