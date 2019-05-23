@@ -7,7 +7,7 @@ Provided fast travel and location opening system with custom events.
 
 <h3>Localization</h3>
 <p>
-To add a language you need to download the language .loc file and move it to the plugin/Locations/locales/ folder. If you want to use the language as the default (which means that all player who have unsupported languages will see this language) you have to open the locale file and after a comma add the word "default", then do /alocations load lcoales to load the locale. Also you might add any languages as supported by the locale by adding language code into the "language" field and splitting them with commas. (ex. language=en_us, en_ud) [<a href="https://minecraft.gamepedia.com/Language">all available language codes</a>]
+To add a language you need to download the language .loc file and move it to the plugin/Locations/locales/ folder. If you want to use the language as the default (which means that all player who have unsupported languages will see this language) you have to open the locale file and after a comma add the word "default", then do /alocations load locales to load the locale. Also you might add any languages as supported by the locale by adding language code into the "language" field and splitting them with commas. (ex. language=en_us, en_ud) [<a href="https://minecraft.gamepedia.com/Language">all available language codes</a>]
 </p>
 <strong>Locales</strong>
 <ul>
@@ -72,7 +72,7 @@ see all existing locations in /travel - ksviety.locations.list
   /alocations database use no <br/>
   /alocations save <<i><a href="#data">data</a></i>> <br/>
 </p>
-<strong id="data">Provided data types: </strong><i>locations, players, dbconf ("all" to save/load everything)</i>
+<strong id="data">Provided data types: </strong><i>locations, players, dbconf, locales ("all" to save/load everything)</i>
 
 <h2 id="#types">Location types</h2>
 <p>
