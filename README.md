@@ -5,6 +5,15 @@ Spigot plugin. The plugin adds locations like in PRG games.
 Provided fast travel and location opening system with custom events.
 </p>
 
+<h3>Localization</h3>
+<p>
+To add a language you need to download the language .loc file and move it to the plugin/Locations/locales/ folder. If you want to use the language as the default (which means that all player who have unsupported languages will see this language) you have to open the locale file and after a comma add the word "default", then do /alocations load lcoales to load the locale. Also you might add any languages as supported by the locale by adding language code into the "language" field and splitting them with commas. (ex. language=en_us, en_ud) [<a href="https://minecraft.gamepedia.com/Language">all available language codes</a>]
+</p>
+<strong>Locales</strong>
+<ul>
+  <li><a href="https://drive.google.com/file/d/1MGDF8fIuIog0tl9aRATjuCGRGqD53TCc/view">Russian</li>
+</ul>
+
 # Commands
 <h3>Fast travel</h3>
 /travel <<i>location-name</i>> [<i>nickname</i>]
